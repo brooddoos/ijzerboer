@@ -17,6 +17,7 @@ script = ExtResource("1_kkrr7")
 load_scene = ExtResource("2_by7hm")
 splash_screen_container = NodePath("CenterContainer")
 fg = NodePath("fadeout")
+syncColors = true
 
 [node name="mainbg" type="ColorRect" parent="."]
 layout_mode = 1

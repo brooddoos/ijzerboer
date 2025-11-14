@@ -9,11 +9,10 @@ extends Control
 @export var splash_screen_container : Node
 @export var fg : ColorRect
 @onready var bg: ColorRect = $mainbg
+@export var syncColors = false
 
 var splash_screens : Array
 var skipping = true
-
-const syncColors = false
 
 func get_screens():
 	splash_screens = splash_screen_container.get_children()
