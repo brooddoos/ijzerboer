@@ -1,11 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://duqanjqofiqy2"]
+[gd_scene load_steps=13 format=3 uid="uid://duqanjqofiqy2"]
 
 [ext_resource type="Script" uid="uid://mqf81qrmeos" path="res://scripts/mainmenu.gd" id="1_5mbse"]
+[ext_resource type="Script" uid="uid://h2ubv3t7qsjy" path="res://scripts/mainMenuCam.gd" id="2_dfy5j"]
 [ext_resource type="PackedScene" uid="uid://c3r0gl516bt40" path="res://assets/3d/road_temp.glb" id="2_r3g3c"]
 [ext_resource type="PackedScene" uid="uid://cknkwf45wt35w" path="res://assets/3d/tree_temp.glb" id="3_3vvtq"]
 [ext_resource type="Texture2D" uid="uid://bwsftepgrv6oe" path="res://assets/images/logotemporary.png" id="4_3vvtq"]
 [ext_resource type="ArrayMesh" uid="uid://b0qwpbidalm4g" path="res://assets/3d/truck-flat.obj" id="5_s5g8n"]
 [ext_resource type="Script" uid="uid://cpny8b1ylg8y5" path="res://scripts/car.gd" id="6_7yvfd"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_dfy5j"]
+dof_blur_near_enabled = true
+dof_blur_near_distance = 6.0
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7q3kq"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -95,6 +100,8 @@ text = "Exit
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.4336605, 4.6083984, 0.97271824)
+attributes = SubResource("CameraAttributesPractical_dfy5j")
+script = ExtResource("2_dfy5j")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_natt5")
