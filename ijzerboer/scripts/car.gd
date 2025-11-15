@@ -1,9 +1,9 @@
-extends MeshInstance3D
+extends Node3D
 @onready var startpoint_1: Node3D = $"../startpoint1"
 @onready var endpoint_1: Node3D = $"../endpoint1"
 @onready var endpoint_2: Node3D = $"../endpoint2"
 @onready var startpoint_2: Node3D = $"../startpoint2"
-@onready var car: MeshInstance3D = $"."
+@onready var car: Node3D = $"."
 @export var speed = 10
 
 # uhh
