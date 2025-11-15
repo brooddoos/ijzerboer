@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwy1ra4jj433n"]
+
+[ext_resource type="Script" uid="uid://ds17hdqwrybti" path="res://scripts/transition.gd" id="1_fyjtc"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_fyjtc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 512.0
+offset_bottom = 448.0
+color = Color(0.18000486, 0.18000486, 0.18000486, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
