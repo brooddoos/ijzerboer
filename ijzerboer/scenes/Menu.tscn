@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://duqanjqofiqy2"]
+[gd_scene load_steps=22 format=4 uid="uid://duqanjqofiqy2"]
 
 [ext_resource type="Script" uid="uid://mqf81qrmeos" path="res://scripts/menu.gd" id="1_5mbse"]
 [ext_resource type="Script" uid="uid://h2ubv3t7qsjy" path="res://scripts/menucam.gd" id="2_dfy5j"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cpny8b1ylg8y5" path="res://scripts/car.gd" id="6_7yvfd"]
 [ext_resource type="Material" uid="uid://c5jnsmgq8ymji" path="res://shaders/aesthetic.tres" id="7_85riq"]
 [ext_resource type="Texture2D" uid="uid://blby58j8ulwlk" path="res://assets/3d/camion_cami.png" id="7_dfy5j"]
+[ext_resource type="PackedScene" uid="uid://c7hkk4gbb50nh" path="res://scenes/cassette.tscn" id="10_4umqm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yt8fu"]
 bg_color = Color(0, 0, 0, 0.4)
@@ -233,7 +234,7 @@ environment = SubResource("Environment_natt5")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 20, 0)
-light_energy = 0.1
+light_energy = 0.2
 shadow_enabled = true
 
 [node name="vloer" type="CSGBox3D" parent="."]
@@ -354,6 +355,17 @@ radius = 1.2
 height = 0.4
 sides = 16
 material = SubResource("StandardMaterial3D_wf3n4")
+
+[node name="Control" parent="." instance=ExtResource("10_4umqm")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_left = 632.0
+offset_top = 56.0
+offset_right = 632.0
+offset_bottom = 56.0
+grow_horizontal = 1
+grow_vertical = 0
 
 [connection signal="pressed" from="ui/Control/Buttons/MarginContainer/HBoxContainer/Play" to="ui/Control" method="_on_play_pressed"]
 [connection signal="pressed" from="ui/Control/Buttons/MarginContainer/HBoxContainer/Options" to="ui/Control" method="_on_options_pressed"]
