@@ -16,8 +16,9 @@ func _ready() -> void:
 	_3_dsplashtext.text = splashTexts[rng.randi_range(0,len(splashTexts)-1)]
 
 func _on_play_pressed() -> void:
-	Transition.changescene()
-
+	##Transition.changescene()
+	var newscene := load("res://scenes/Game.tscn")
+	get_tree().change_scene_to_packed(newscene)
 func _on_options_pressed() -> void:
 	buttons.visible = !buttons.visible
 	settings.visible = !settings.visible

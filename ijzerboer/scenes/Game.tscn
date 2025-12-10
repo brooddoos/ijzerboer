@@ -1,108 +1,82 @@
-[gd_scene load_steps=10 format=4 uid="uid://1qbfol6dsaaq"]
+[gd_scene load_steps=11 format=3 uid="uid://1qbfol6dsaaq"]
 
 [ext_resource type="Script" uid="uid://clfas6djira7w" path="res://scripts/drive.gd" id="1_cpr0p"]
-[ext_resource type="Material" uid="uid://c5jnsmgq8ymji" path="res://shaders/aesthetic.tres" id="2_78awf"]
-[ext_resource type="Texture2D" uid="uid://blby58j8ulwlk" path="res://assets/3d/camion_cami.png" id="3_s0nni"]
+[ext_resource type="Script" uid="uid://cpny8b1ylg8y5" path="res://scripts/car.gd" id="2_78awf"]
+[ext_resource type="PackedScene" uid="uid://e8f5a586tn0u" path="res://assets/cami.glb" id="3_s0nni"]
+[ext_resource type="AudioStream" uid="uid://cl8rj68813nfq" path="res://assets/audio/honk.mp3" id="4_78awf"]
 
 [sub_resource type="Environment" id="Environment_aug50"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8q5jl"]
-resource_name = "Material"
-cull_mode = 2
-albedo_texture = ExtResource("3_s0nni")
-texture_filter = 2
+[sub_resource type="BoxMesh" id="BoxMesh_cpr0p"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_r7nqf"]
-_surfaces = [{
-"aabb": AABB(-1, 0, -8, 4, 4.441984, 10.3),
-"format": 34359742465,
-"index_count": 180,
-"index_data": PackedByteArray("AAABAAIAAgABAAMAAgADAAQABQAEAAMAAQAFAAMABQAGAAQABgACAAQABwAGAAUAAQAHAAUACAACAAYABwAIAAYACQACAAgABwAKAAgACQAIAAoABwALAAoADAAHAAEADAALAAcAAgAJAA0ADQAAAAIAAAAOAAEADwAOAAAAEAABAA4AAQAQAAwADwARAA4AEAAOABEAAAASAA8AEgARAA8AEgAQABEAAAANABIADAAQABIADAASAA0ADAANABMADQAUABMADAATABUAFQATABQADQAWABQADQAJABYAFQAUABcAFwAMABUAFAAWABgAFwAUABgAGQAMABcAFwAYABkAGAAaABkAGgAMABkAGAAWABoAGwAMABoAGwAaABYAGwAWAAkADAAbAAsACQAcABsACwAbABwACQAdABwACwAcAB4ACQAfAB0AHAAdAB8AHAAfAB4AHwALAB4ACQAKAB8AHwAKAAsA"),
-"name": "Material",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 32,
-"vertex_data": PackedByteArray("zcwsQLwkjkAzM/PAAACAvwAAIEAAAADBAABAQAEAIEAAAADBAACAvwAAAAAAAADBAABAQAAAAAAAAADBAACAvwAAAABnZubAAABAQAAAAABnZubAAACAv2dmZj9nZtbAAABAQGdmZj9nZtbAAABAQBcBgD8AAACAAABAQGdmZj+ambnAAACAv2dmZj+ambnAAACAvzMzE0BnZmY/AABAQDMzE0BnZmY/NDMzv7wkjkAzM/PAzcwsQLwkjkAAAIDANDMzv7wkjkAAAACANDMzv7wkjkAAAIDAzcwsQLwkjkAAAACAAABAQCJs8z8zMxNAAABAQAAAAAAzMxNAAACAvyRs8z8zMxNAAABAQBcBgD8AAIA/AACAvwAAAAAzMxNAAABAQAAAAAAAAMA/AACAvwAAAAAAAMA/AACAvwAAgD8AAIA/AACAvwAAgD8AAACAAACAvwAAAAAAAAC/AABAQAAAAAAAAAC/AACAvwAAAACamanAAABAQAAAAACamanA")
-}]
-blend_shape_mode = 0
+[sub_resource type="BoxShape3D" id="BoxShape3D_78awf"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_kiw3p"]
-resource_name = "camion_Cube"
-_surfaces = [{
-"aabb": AABB(-1, 0, -8, 4, 4.441984, 10.3),
-"attribute_data": PackedByteArray("fgQQP+fAAD8vc3g/CA44P8+MBz8FDjg/hftvP+nAAD8p+Lk+6luSPm+zGj9+j70+Kfi5Pn6PvT5vsxo/6luSPgZi/DxjUUg/elvyPkEufj8GYvw8QS5+P3pb8j5jUUg/BmL8PLgJPT8TXeE+514AP3pb8j64CT0/HBKDPedeAD/ScQ0/WFTGPrmt1z4ohG4+0nENPyiEbj65rdc+WFTGPtJxDT8UQsc+uK3XPmiDdT7RcQ0/bIN1Prmt1z4UQsc+EFGAPzQp8D6ri14/jiiAPhBRgD9wjZM+kCdtPzQp8D77+mA/1na/PsqhSD/Wdr8+RKVtPnZVxD40dTw/NCnwPtIrjz40KfA+yP0VPnZVxD7gCbs8iNZsPtCWyj00KfA+4Am7PDQp8D6erxg+MqjzPmJQZz7OV8w+nq8YPs5XzD5iUGc+MqjzPquLXj+OKIA+EFGAPzQp8D4QUYA/cI2TPvv6YD9sdr8+kCdtPzQp8D7KoUg/bHa/PuAJuzyI1mw+0JbKPTQp8D7gCbs8NCnwPsj9FT52VcQ+RKVtPnZVxD7SK48+NCnwPjR1PD80KfA+z4wHPwUOOD8wc3g/GD9/P86MBz8YP38/L3N4PwgOOD+erxg+MqjzPmJQZz7OV8w+nq8YPs5XzD5iUGc+MqjzPp6vGD4yqPM+YlBnPs5XzD6erxg+zlfMPmJQZz4yqPM+nq8YPjKo8z5iUGc+zlfMPp6vGD7OV8w+YlBnPjKo8z6erxg+MqjzPmJQZz7OV8w+nq8YPs5XzD5iUGc+MqjzPquLXj+OKIA+WFl5PUDOPj3gCbs8iNZsPsqhSD9Azj49GnrOPkDOPj3gCbs8iNZsPsqhSD9Azj49q4teP44ogD5YWXk9QM4+PRp6zj5Azj49nq8YPjKo8z5iUGc+zlfMPp6vGD7OV8w+YlBnPjKo8z6erxg+MqjzPmJQZz7OV8w+nq8YPs5XzD5iUGc+MqjzPp6vGD4yqPM+YlBnPs5XzD6erxg+zlfMPmJQZz4yqPM+nq8YPjKo8z5iUGc+zlfMPp6vGD7OV8w+YlBnPjKo8z4="),
-"format": 34359742487,
-"index_count": 180,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGwAZABgAHAAZABsAHQAZABwAGQAdAB4AHgAdAB8AHgAfACAAGQAeACEAGQAhACIAIgAhACMAIgAjACQAJQAmACcAJQAoACYAKQAqACsAKQAsACoAKgAsAC0AKQAuACwALwAuACkAMAAvADEAMgAvADAALgAvADIALgAyADMALgAzADQALgA0ADUANgA3ADgANgA5ADcAOgA7ADwAOgA9ADsAPgA/AEAAPgBBAD8AQgBDAEQAQgBFAEMARgBHAEgARgBJAEcASgBLAEwASwBKAE0ASwBNAE4ATwBQAFEAUABPAFIAUABSAFMAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEA"),
-"material": SubResource("StandardMaterial3D_8q5jl"),
-"name": "Material",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 100,
-"vertex_data": PackedByteArray("zcwsQLwkjkAzM/PAAACAvwAAIEAAAADBAABAQAEAIEAAAADBNDMzv7wkjkAzM/PAAACAvzMzE0BnZmY/AABAQCJs8z8zMxNAAACAvyRs8z8zMxNAAABAQDMzE0BnZmY/AACAvyRs8z8zMxNAAABAQAAAAAAzMxNAAACAvwAAAAAzMxNAAABAQCJs8z8zMxNAAACAvzMzE0BnZmY/zcwsQLwkjkAAAACAAABAQDMzE0BnZmY/NDMzv7wkjkAAAACAzcwsQLwkjkAAAACANDMzv7wkjkAAAIDAzcwsQLwkjkAAAIDANDMzv7wkjkAAAACAzcwsQLwkjkAAAIDANDMzv7wkjkAzM/PAzcwsQLwkjkAzM/PANDMzv7wkjkAAAIDAAACAvwAAAAAzMxNAAACAvzMzE0BnZmY/AACAvyRs8z8zMxNAAACAvwAAAAAAAMA/AACAvwAAgD8AAIA/AACAvwAAgD8AAACAAACAv2dmZj+ambnAAACAvwAAAAAAAAC/AACAvwAAAACamanAAACAv2dmZj9nZtbAAACAvwAAIEAAAADBAACAvwAAAABnZubAAACAvwAAAAAAAADBAACAvwAAAAAzMxNAAABAQAAAAAAAAMA/AACAvwAAAAAAAMA/AABAQAAAAAAzMxNAAABAQDMzE0BnZmY/AABAQAAAAAAzMxNAAABAQCJs8z8zMxNAAABAQBcBgD8AAIA/AABAQAAAAAAAAMA/AABAQBcBgD8AAACAAABAQAEAIEAAAADBAABAQAAAAABnZubAAABAQAAAAAAAAADBAABAQGdmZj9nZtbAAABAQGdmZj+ambnAAABAQAAAAACamanAAABAQAAAAAAAAAC/AABAQAEAIEAAAADBAACAvwAAAAAAAADBAABAQAAAAAAAAADBAACAvwAAIEAAAADBAABAQAAAAAAAAMA/AACAvwAAgD8AAIA/AACAvwAAAAAAAMA/AABAQBcBgD8AAIA/AABAQBcBgD8AAACAAACAvwAAAAAAAAC/AACAvwAAgD8AAACAAABAQAAAAAAAAAC/AACAv2dmZj9nZtbAAABAQAAAAABnZubAAACAvwAAAABnZubAAABAQGdmZj9nZtbAAACAvwAAgD8AAACAAABAQBcBgD8AAIA/AABAQBcBgD8AAACAAACAvwAAgD8AAIA/AABAQDMzE0BnZmY/zcwsQLwkjkAzM/PAAABAQAEAIEAAAADBzcwsQLwkjkAAAACAzcwsQLwkjkAAAIDAAACAvwAAIEAAAADBNDMzv7wkjkAAAACAAACAvzMzE0BnZmY/NDMzv7wkjkAzM/PANDMzv7wkjkAAAIDAAABAQAAAAACamanAAACAv2dmZj+ambnAAACAvwAAAACamanAAABAQGdmZj+ambnAAACAvwAAAABnZubAAABAQAAAAAAAAADBAACAvwAAAAAAAADBAABAQAAAAABnZubAAACAvwAAAAAAAAC/AABAQAAAAACamanAAACAvwAAAACamanAAABAQAAAAAAAAAC/AACAv2dmZj9nZtbAAABAQGdmZj+ambnAAABAQGdmZj9nZtbAAACAv2dmZj+ambnAI+r//wAA/78j6v//AAD/vyPq//8AAP+/I+r//wAA/7//f6bj////v/9/puP///+//3+m4////7//f6bj////v/9//3////+//3//f////7//f/9/////v/9//3////+//3/epf///7//f96l////v/9/3qX///+//3/epf///7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+/AAD/f/9//78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//vwAA/3//f/+/AAD/f/9//7//fwAA////P/9/AAD///8//38AAP///z//fwAA////P////3//f/8/////f/9//z////9//3//P////3//f/8/////f/9//z////9//3//P////3//f/8/////f/9//z////9//3//P////3//f/8/////f/9//z////9//3//P////3//f/8//////wAA/7//////AAD/v/////8AAP+//////wAA/79U1QAAqaoAAFTVAACpqgAAVNUAAKmqAABU1QAAqaoAAP9/VFWpqv5//39UVamq/n//f1RVqar+f/9/VFWpqv5//39JUv///z//f0lS////P/9/SVL///8//39JUv///z//fwAA/3//P/9/AAD/f/8//38AAP9//z//fwAA/3//P2XvZJDEfwJAZe9kkMN//T9l72SQwn/7P2XvZJDFfwRAZe9kkP///z+ZEGSQOoD8v5kQZJA7gAHAmRBkkDuAAsCZEGSQOYD6v5kQZJD///8/SdIAALWtAABJ0gAAta0AAEnSAAC1rQAASdIAALWtAAD/fwAA////P/9/AAD///8//38AAP///z//fwAA////P/9/AAD///8//38AAP///z//fwAA////P/9/AAD///8//38AAP9//z//fwAA/3//P/9/AAD/f/8//38AAP9//z8=")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_r7nqf")
+[sub_resource type="SphereShape3D" id="SphereShape3D_78awf"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_cpr0p"]
-radius = 5.262
+[sub_resource type="SphereMesh" id="SphereMesh_s0nni"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_400sg"]
-height = 0.5
+[sub_resource type="PlaneMesh" id="PlaneMesh_78awf"]
 
 [node name="Game" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_aug50")
 
-[node name="camion" type="Node3D" parent="."]
-transform = Transform3D(-2.6226834e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.6226834e-08, -25.743507, 1.0385226, -8.257942)
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
+mesh = SubResource("BoxMesh_cpr0p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
+shape = SubResource("BoxShape3D_78awf")
+
+[node name="Node3D" type="Node3D" parent="."]
 script = ExtResource("1_cpr0p")
 
-[node name="VehicleBody3D" type="VehicleBody3D" parent="."]
+[node name="Ball" type="RigidBody3D" parent="Node3D"]
+angular_damp = 5.0
 
-[node name="Cube" type="MeshInstance3D" parent="VehicleBody3D"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3, 0, 1)
-material_override = ExtResource("2_78awf")
-mesh = SubResource("ArrayMesh_kiw3p")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Ball"]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
+shape = SubResource("SphereShape3D_78awf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/Ball"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("SphereMesh_s0nni")
+
+[node name="Car" type="Node3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.082690716, 0.2672081, -0.6393982)
+script = ExtResource("2_78awf")
+
+[node name="Mesh" parent="Node3D/Car" instance=ExtResource("3_s0nni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.082690716, -0.2672081, 0.6393982)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Node3D/Car"]
+transform = Transform3D(-4.371139e-08, -0.58778536, -0.80901694, 0, -0.80901694, 0.58778536, -1, 2.5692914e-08, 3.5363254e-08, -0.082690716, -3.267208, 1.6393982)
+spring_length = 20.0
+margin = 1.0
+
+[node name="Camera3D" type="Camera3D" parent="Node3D/Car/SpringArm3D"]
+transform = Transform3D(-1, -8.7422784e-08, 0, 8.742278e-08, -1.0000001, 0, 0, 0, 1.0000001, 6.556511e-07, 8.81678, 12.135254)
+
+[node name="LicensePlate" type="MeshInstance3D" parent="Node3D/Car"]
+transform = Transform3D(8.742277e-08, -1, 4.3711392e-08, 4.371139e-08, -4.371139e-08, -1, 1, 8.742277e-08, 4.371138e-08, -6.0826907, -2.267208, 1.6393982)
+mesh = SubResource("PlaneMesh_78awf")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="VehicleBody3D"]
-shape = SubResource("SphereShape3D_cpr0p")
+[node name="RayCast3D" type="RayCast3D" parent="Node3D/Car"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.082690716, -4.267208, 1.6393982)
 
-[node name="VehicleWheel3D" type="VehicleWheel3D" parent="VehicleBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)
-use_as_steering = true
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Node3D/Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.082690716, -0.2672081, 0.6393982)
+stream = ExtResource("4_78awf")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D/VehicleWheel3D"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
-mesh = SubResource("CylinderMesh_400sg")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 18.369925, 0)
 
-[node name="VehicleWheel3D2" type="VehicleWheel3D" parent="VehicleBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)
-use_as_steering = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D/VehicleWheel3D2"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
-mesh = SubResource("CylinderMesh_400sg")
-skeleton = NodePath("../../VehicleWheel3D/MeshInstance3D")
-
-[node name="VehicleWheel3D3" type="VehicleWheel3D" parent="VehicleBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2)
-use_as_traction = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D/VehicleWheel3D3"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
-mesh = SubResource("CylinderMesh_400sg")
-
-[node name="VehicleWheel3D4" type="VehicleWheel3D" parent="VehicleBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
-use_as_traction = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D/VehicleWheel3D4"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
-mesh = SubResource("CylinderMesh_400sg")
-
-[node name="RayCast3D" type="RayCast3D" parent="VehicleBody3D"]
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[editable path="Node3D/Car/Mesh"]

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://11jhbnry6adq"
-path="res://.godot/imported/cami.glb-51a02ef73ed5b62d233dd9bce95a1975.scn"
+uid="uid://e8f5a586tn0u"
+path="res://.godot/imported/cami.glb-bc6ac7944405cac6f3cffc8de2f3b4af.scn"
 
 [deps]
 
-source_file="res://assets/3d/cami.glb"
-dest_files=["res://.godot/imported/cami.glb-51a02ef73ed5b62d233dd9bce95a1975.scn"]
+source_file="res://assets/cami.glb"
+dest_files=["res://.godot/imported/cami.glb-bc6ac7944405cac6f3cffc8de2f3b4af.scn"]
 
 [params]
 

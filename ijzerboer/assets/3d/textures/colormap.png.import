@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blby58j8ulwlk"
-path.s3tc="res://.godot/imported/camion_cami.png-6ce3358f87f2f7147de063c13ad93448.s3tc.ctex"
+uid="uid://db1kdq7m3h3jd"
+path.s3tc="res://.godot/imported/colormap.png-9e106dcd30bc08c081cf3b64c964d810.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "4dd40ecb9836fe1b090a81debde64c24"
-}
 
 [deps]
 
-source_file="res://assets/3d/camion_cami.png"
-dest_files=["res://.godot/imported/camion_cami.png-6ce3358f87f2f7147de063c13ad93448.s3tc.ctex"]
+source_file="res://assets/3d/textures/colormap.png"
+dest_files=["res://.godot/imported/colormap.png-9e106dcd30bc08c081cf3b64c964d810.s3tc.ctex"]
 
 [params]
 
