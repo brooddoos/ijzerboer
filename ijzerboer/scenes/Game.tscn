@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://1qbfol6dsaaq"]
+[gd_scene load_steps=9 format=3 uid="uid://1qbfol6dsaaq"]
 
 [ext_resource type="Script" uid="uid://clfas6djira7w" path="res://scripts/drive.gd" id="1_cpr0p"]
-[ext_resource type="Script" uid="uid://cpny8b1ylg8y5" path="res://scripts/car.gd" id="2_78awf"]
 [ext_resource type="PackedScene" uid="uid://e8f5a586tn0u" path="res://assets/cami.glb" id="3_s0nni"]
 [ext_resource type="AudioStream" uid="uid://cl8rj68813nfq" path="res://assets/audio/honk.mp3" id="4_78awf"]
 
@@ -14,8 +13,6 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_78awf"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_s0nni"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_78awf"]
 
 [node name="Game" type="Node3D"]
 
@@ -39,10 +36,11 @@ shape = SubResource("BoxShape3D_78awf")
 script = ExtResource("1_cpr0p")
 
 [node name="Ball" type="RigidBody3D" parent="Node3D"]
+collision_layer = 2
 angular_damp = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Ball"]
-transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 shape = SubResource("SphereShape3D_78awf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/Ball"]
@@ -50,31 +48,24 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 mesh = SubResource("SphereMesh_s0nni")
 
 [node name="Car" type="Node3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.082690716, 0.2672081, -0.6393982)
-script = ExtResource("2_78awf")
 
 [node name="Mesh" parent="Node3D/Car" instance=ExtResource("3_s0nni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.082690716, -0.2672081, 0.6393982)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.57, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="Node3D/Car"]
-transform = Transform3D(-4.371139e-08, -0.58778536, -0.80901694, 0, -0.80901694, 0.58778536, -1, 2.5692914e-08, 3.5363254e-08, -0.082690716, -3.267208, 1.6393982)
+collision_mask = 0
 spring_length = 20.0
 margin = 1.0
 
-[node name="Camera3D" type="Camera3D" parent="Node3D/Car/SpringArm3D"]
-transform = Transform3D(-1, -8.7422784e-08, 0, 8.742278e-08, -1.0000001, 0, 0, 0, 1.0000001, 6.556511e-07, 8.81678, 12.135254)
-
-[node name="LicensePlate" type="MeshInstance3D" parent="Node3D/Car"]
-transform = Transform3D(8.742277e-08, -1, 4.3711392e-08, 4.371139e-08, -4.371139e-08, -1, 1, 8.742277e-08, 4.371138e-08, -6.0826907, -2.267208, 1.6393982)
-mesh = SubResource("PlaneMesh_78awf")
-skeleton = NodePath("")
-
 [node name="RayCast3D" type="RayCast3D" parent="Node3D/Car"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.082690716, -4.267208, 1.6393982)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1, 0)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Node3D/Car"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.082690716, -0.2672081, 0.6393982)
 stream = ExtResource("4_78awf")
+
+[node name="Camera3D" type="Camera3D" parent="Node3D/Car"]
+transform = Transform3D(-1, 4.371139e-08, -7.5710346e-08, 0, 0.8660254, 0.5, 8.742278e-08, 0.5, -0.8660254, 0, 6, -11)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 18.369925, 0)

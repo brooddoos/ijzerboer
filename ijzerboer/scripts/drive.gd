@@ -2,8 +2,8 @@ extends Node3D
 
 @onready var car_mesh = $Car
 @onready var ground_ray = $Car/RayCast3D
-@onready var right_wheel = $Car/VehicleWheel3D
-@onready var left_wheel = $Car/VehicleWheel3D2
+##@onready var right_wheel = $Car/VehicleWheel3D
+## @onready var left_wheel = $Car/VehicleWheel3D2
 
 # Movement settings
 var acceleration = 20
@@ -23,14 +23,14 @@ func _physics_process(delta):
 	turn_input = deg_to_rad(steering) * Input.get_axis("steer_right", "steer_left")
 	# Apply movement force
 	##if ground_ray.is_colliding():
-	var forward = -car_mesh.transform.basis.z
+	var forward = car_mesh.transform.basis.z
 	$Ball.apply_central_force(forward * speed_input)
 	##if not ground_ray.is_colliding():
 	##	return
 
 	# Rotate wheels visually
-	right_wheel.rotation.y = turn_input
-	left_wheel.rotation.y = turn_input
+	##right_wheel.rotation.y = turn_input
+	##left_wheel.rotation.y = turn_input
 
 	# Turn the car mesh visually only when moving
 	car_mesh.rotate_y(turn_input * delta)
@@ -41,4 +41,4 @@ func _process(delta):
 		$Car/AudioStreamPlayer3D.play()
 	if Input.is_action_just_pressed("lights"):
 		$Car/Mesh/FrontLeftLight.visible = not $Car/Mesh/FrontLeftLight.visible
-		$Car/Mesh/FrontRightLight.visible = not $Car/Mesh/FrontLeftLight.visible
+		$Car/Mesh/FrontRightLight.visible = not $Car/Mesh/FrontRightLight.visible
