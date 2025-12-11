@@ -5,9 +5,9 @@ signal newTape
 
 @export var generatedTapes:Dictionary = { #gvd er is geen betere manier, gl future me frfr 🙏🙏
 	"ost1": { "title": "Ijzerman music\nVOLUME 1", "type" : 1 , "speed" : 2, "rotateright" : true, },
-	"ost2": { "title": "insert very original song title", "type" : 1 , "speed" : 2, "rotateright" : true, },
+	"ost2": { "title": "insert very original song title\n", "type" : 1 , "speed" : 2, "rotateright" : true, },
 	"ost3": { "title": "what heppens when i englisih\ntoo hard (dutch version)", "type" : 1 , "speed" : 2, "rotateright" : true, },
-	"ost4": { "title": "music (but fast)", "type" : 1 , "speed" : 20, "rotateright" : true, },
+	"ost4": { "title": "music (but fast)\n", "type" : 1 , "speed" : 20, "rotateright" : true, },
 }
 
 const TAPETEMPLATE := {	"template": { "title": "if you see this then\nthegamebroke", "type" : 1 , "speed" : 2, "rotateright" : true, },}

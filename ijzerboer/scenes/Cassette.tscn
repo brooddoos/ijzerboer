@@ -281,9 +281,9 @@ anchor_top = 1.0805556
 anchor_right = 1.0
 anchor_bottom = 1.0805556
 offset_left = -317.0
-offset_top = -214.0
+offset_top = -262.0
 offset_right = 7.0
-offset_bottom = 110.0
+offset_bottom = 62.0
 grow_horizontal = 0
 grow_vertical = 0
 stretch = true
@@ -294,7 +294,7 @@ transparent_bg = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(324, 324)
-size_2d_override = Vector2i(1024, 896)
+size_2d_override = Vector2i(1024, 1024)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
@@ -311,7 +311,7 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="cassettelowpoly" type="Node3D" parent="SubViewportContainer/SubViewport/Node3D" node_paths=PackedStringArray("cassette_1", "cassette_2", "labelText")]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 3.5691445, 2.2336092, -1.5748211)
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 3.569, 1.234, -1.575)
 script = ExtResource("2_lk8fx")
 cassette_1 = NodePath("Spoel")
 cassette_2 = NodePath("Spoel2")
@@ -353,20 +353,19 @@ mesh = SubResource("ArrayMesh_6e8sh")
 skeleton = NodePath("")
 
 [node name="label" type="Sprite3D" parent="SubViewportContainer/SubViewport/Node3D/cassettelowpoly"]
-transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 3.5860994, 2.5, -1.749713)
-top_level = true
+transform = Transform3D(0.017, 0, 0, 0, 0.017, 0, 0, 0, 0.017, 0.00033909827, 0.0053278133, -0.003497839)
 pixel_size = 0.0026
 texture = ExtResource("4_oirex")
 
 [node name="text" type="Label3D" parent="SubViewportContainer/SubViewport/Node3D/cassettelowpoly/label"]
-transform = Transform3D(-1.0000002, 0, 8.7422805e-08, 0, 1.0000002, 0, -8.7422805e-08, 0, -1.0000002, 0, 1, 0.01)
+transform = Transform3D(-1.0000002, 0, 8.7422805e-08, 0, 1.0000002, 0, -8.7422805e-08, 0, -1.0000002, 0, 0.99, 0.01)
 sorting_offset = 1.0
 modulate = Color(0, 0, 0, 1)
 text = "zo'n coole mixtape
 ededdeeddeeded"
 font = ExtResource("5_lmlse")
 font_size = 80
-line_spacing = -40.0
+line_spacing = -30.0
 
 [node name="lines" type="Label3D" parent="SubViewportContainer/SubViewport/Node3D/cassettelowpoly/label"]
 transform = Transform3D(-1.0000002, 0, 8.7422805e-08, 0, 1.0000002, 0, -8.7422805e-08, 0, -1.0000002, 0, 0.91, 0.01)
@@ -374,6 +373,7 @@ sorting_offset = 1.0
 modulate = Color(0, 0, 0, 1)
 text = "_________________________________________________
 _________________________________________________"
+line_spacing = 16.0
 
 [node name="copyright" type="Label3D" parent="SubViewportContainer/SubViewport/Node3D/cassettelowpoly/label"]
 transform = Transform3D(-1.0000002, 0, 8.7422805e-08, 0, 1.0000002, 0, -8.7422805e-08, 0, -1.0000002, 1.2611275, -1.0994118, 0.015946865)

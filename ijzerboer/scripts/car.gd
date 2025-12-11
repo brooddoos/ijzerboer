@@ -24,7 +24,6 @@ func _ready() -> void:
 	car.position = startpoint_1.position
 	car.rotation = startpoint_2.rotation
 	destination = endpoint_1.position
-	$AudioStreamPlayer3D.play()
 
 func _process(delta: float) -> void:
 	counter += 1
@@ -45,7 +44,7 @@ func _process(delta: float) -> void:
 		offset = randint(0,750)
 		return
 		
-	if arrivedCount + offset <= counter: 
+	if arrivedCount + offset <= counter or arrivedCount == 0: 
 		direction = direction.normalized()
 		car.look_at(destination, Vector3.UP)
 		if isDrun:
