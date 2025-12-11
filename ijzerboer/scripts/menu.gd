@@ -1,6 +1,6 @@
 extends Control
 @onready var settings: PanelContainer = $Settings
-@onready var _3_dsplashtext: Label3D = $"../../logo/3dsplashtext"
+@onready var _3_dsplashtext: Label3D = $"../../Logo/3dsplashtext"
 @onready var buttons: PanelContainer = $Buttons
 
 const splashTexts = [ #voeg later mss meer toe, idk

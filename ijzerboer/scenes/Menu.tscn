@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bwsftepgrv6oe" path="res://assets/images/logotemporary.png" id="4_3vvtq"]
 [ext_resource type="Script" uid="uid://cpny8b1ylg8y5" path="res://scripts/car.gd" id="6_7yvfd"]
 [ext_resource type="PackedScene" uid="uid://e8f5a586tn0u" path="res://assets/cami.glb" id="8_yt8fu"]
-[ext_resource type="PackedScene" uid="uid://c7hkk4gbb50nh" path="res://scenes/cassette.tscn" id="10_4umqm"]
+[ext_resource type="AudioStream" uid="uid://boctiaeexkja2" path="res://assets/audio/oudijzer.mp3" id="9_yt8fu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yt8fu"]
 bg_color = Color(0, 0, 0, 0.4)
@@ -195,70 +195,70 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 light_energy = 0.2
 shadow_enabled = true
 
-[node name="vloer" type="CSGBox3D" parent="."]
+[node name="Floor" type="CSGBox3D" parent="."]
 transform = Transform3D(7.200467, 0, 0, 0, 1, 0, 0, 0, 1, -5.5348206, 0, -36.146393)
 size = Vector3(18.058167, 1, 116.671936)
 material = SubResource("StandardMaterial3D_s5g8n")
 
-[node name="weg" parent="." instance=ExtResource("2_r3g3c")]
+[node name="Road" parent="." instance=ExtResource("2_r3g3c")]
 transform = Transform3D(81.65783, 0, 0, 0, 10, 0, 0, 0, 10, -3.815592, 0.47070646, -10.915129)
 
-[node name="trees" type="Node" parent="."]
+[node name="Trees" type="Node" parent="."]
 
-[node name="tree_temp" parent="trees" instance=ExtResource("3_3vvtq")]
+[node name="tree_temp" parent="Trees" instance=ExtResource("3_3vvtq")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -35.749996, 0.35534048, -18.262314)
 
-[node name="tree_temp2" parent="trees" instance=ExtResource("3_3vvtq")]
+[node name="tree_temp2" parent="Trees" instance=ExtResource("3_3vvtq")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -20.903841, -0.24103785, -18.262312)
 
-[node name="tree_temp3" parent="trees" instance=ExtResource("3_3vvtq")]
+[node name="tree_temp3" parent="Trees" instance=ExtResource("3_3vvtq")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -29.586042, -0.7570014, -18.262308)
 
-[node name="tree_temp4" parent="trees" instance=ExtResource("3_3vvtq")]
+[node name="tree_temp4" parent="Trees" instance=ExtResource("3_3vvtq")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -14.205837, -2.4506888, -18.262306)
 
-[node name="tree_temp5" parent="trees" instance=ExtResource("3_3vvtq")]
+[node name="tree_temp5" parent="Trees" instance=ExtResource("3_3vvtq")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -25.272678, -5.768126, -18.262308)
 
-[node name="tree_temp6" parent="trees" instance=ExtResource("3_3vvtq")]
+[node name="tree_temp6" parent="Trees" instance=ExtResource("3_3vvtq")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -18.106716, -3.772015, -18.262308)
 
-[node name="tree_temp7" parent="trees" instance=ExtResource("3_3vvtq")]
+[node name="tree_temp7" parent="Trees" instance=ExtResource("3_3vvtq")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -32.724396, -1.9614549, -18.262308)
 
-[node name="tree_temp8" parent="trees" instance=ExtResource("3_3vvtq")]
+[node name="tree_temp8" parent="Trees" instance=ExtResource("3_3vvtq")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -2.2271538, -1.1920857, -18.262308)
 
-[node name="tree_temp9" parent="trees" instance=ExtResource("3_3vvtq")]
+[node name="tree_temp9" parent="Trees" instance=ExtResource("3_3vvtq")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -8.620092, -3.0125937, -18.262308)
 
-[node name="tree_temp10" parent="trees" instance=ExtResource("3_3vvtq")]
+[node name="tree_temp10" parent="Trees" instance=ExtResource("3_3vvtq")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -5.5077667, -5.527017, -18.262308)
 
-[node name="tree_temp11" parent="trees" instance=ExtResource("3_3vvtq")]
+[node name="tree_temp11" parent="Trees" instance=ExtResource("3_3vvtq")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 2.8522701, -1.1293855, -18.26231)
 
-[node name="tree_temp12" parent="trees" instance=ExtResource("3_3vvtq")]
+[node name="tree_temp12" parent="Trees" instance=ExtResource("3_3vvtq")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 7.4074135, -4.371206, -18.26231)
 
-[node name="tree_temp13" parent="trees" instance=ExtResource("3_3vvtq")]
+[node name="tree_temp13" parent="Trees" instance=ExtResource("3_3vvtq")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 14.357957, -3.7926745, -18.26231)
 
-[node name="tree_temp14" parent="trees" instance=ExtResource("3_3vvtq")]
+[node name="tree_temp14" parent="Trees" instance=ExtResource("3_3vvtq")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -3.6111479, -4.1265683, -2.6423779)
 
-[node name="tree_temp15" parent="trees" instance=ExtResource("3_3vvtq")]
+[node name="tree_temp15" parent="Trees" instance=ExtResource("3_3vvtq")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -13.163408, -3.8182168, -2.6423779)
 
-[node name="muur" type="CSGBox3D" parent="."]
+[node name="Wall" type="CSGBox3D" parent="."]
 transform = Transform3D(149.71939, 0, 0, 0, 1.7977414, 0, 0, 0, 1, 0, 6.955824, -41.283447)
 size = Vector3(1, 7.692993, 1)
 
-[node name="logo" type="Sprite3D" parent="."]
+[node name="Logo" type="Sprite3D" parent="."]
 transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, -8.090498, 6.840866, -15.785511)
 texture = ExtResource("4_3vvtq")
 
-[node name="3dsplashtext" type="Label3D" parent="logo"]
+[node name="3dsplashtext" type="Label3D" parent="Logo"]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, -1.1764708, 0)
 text = "splashtextsplashtext"
 font_size = 100
@@ -276,13 +276,15 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -37.
 [node name="startpoint2" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 24, 1.039, -13)
 
-[node name="camion" type="Node3D" parent="."]
+[node name="Van" type="Node3D" parent="."]
 transform = Transform3D(-2.6226834e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.6226834e-08, -25.743507, 1.0385226, -8.257942)
 script = ExtResource("6_7yvfd")
 
-[node name="cami" parent="camion" instance=ExtResource("8_yt8fu")]
+[node name="cami" parent="Van" instance=ExtResource("8_yt8fu")]
 
-[node name="Control" parent="." instance=ExtResource("10_4umqm")]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Van"]
+stream = ExtResource("9_yt8fu")
+doppler_tracking = 2
 
 [connection signal="pressed" from="ui/Control/Buttons/MarginContainer/HBoxContainer/Play" to="ui/Control" method="_on_play_pressed"]
 [connection signal="pressed" from="ui/Control/Buttons/MarginContainer/HBoxContainer/Options" to="ui/Control" method="_on_options_pressed"]

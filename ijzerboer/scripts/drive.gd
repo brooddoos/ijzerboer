@@ -9,6 +9,7 @@ extends Node3D
 var acceleration = 20
 var steering = 18.0  # degrees
 
+
 # Input
 var speed_input := 0.0
 var turn_input := 0.0
@@ -18,15 +19,18 @@ func _physics_process(delta):
 
 	# Stick car mesh to the ball's position
 	$Car.global_position = $Ball.global_position
+	var speed = $Ball.linear_velocity.length() * 3.6
+	int(speed)
+	print(speed)
 	# Input
 	speed_input = Input.get_axis("brake", "accelerate") * acceleration
 	turn_input = deg_to_rad(steering) * Input.get_axis("steer_right", "steer_left")
 	# Apply movement force
-	##if ground_ray.is_colliding():
-	var forward = car_mesh.transform.basis.z
-	$Ball.apply_central_force(forward * speed_input)
-	##if not ground_ray.is_colliding():
-	##	return
+	if ground_ray.is_colliding():
+		var forward = car_mesh.transform.basis.z
+		$Ball.apply_central_force(forward * speed_input)
+	if not ground_ray.is_colliding():
+		return
 
 	# Rotate wheels visually
 	##right_wheel.rotation.y = turn_input

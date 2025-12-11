@@ -24,6 +24,7 @@ func _ready() -> void:
 	car.position = startpoint_1.position
 	car.rotation = startpoint_2.rotation
 	destination = endpoint_1.position
+	$AudioStreamPlayer3D.play()
 
 func _process(delta: float) -> void:
 	counter += 1
