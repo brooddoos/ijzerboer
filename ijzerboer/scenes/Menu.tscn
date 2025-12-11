@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cknkwf45wt35w" path="res://assets/3d/tree_temp.glb" id="3_3vvtq"]
 [ext_resource type="Texture2D" uid="uid://bwsftepgrv6oe" path="res://assets/images/logotemporary.png" id="4_3vvtq"]
 [ext_resource type="Script" uid="uid://cpny8b1ylg8y5" path="res://scripts/car.gd" id="6_7yvfd"]
-[ext_resource type="PackedScene" uid="uid://e8f5a586tn0u" path="res://assets/cami.glb" id="8_yt8fu"]
+[ext_resource type="PackedScene" uid="uid://ymbmajn3a8ya" path="res://scenes/cami.tscn" id="8_yt8fu"]
 [ext_resource type="AudioStream" uid="uid://boctiaeexkja2" path="res://assets/audio/oudijzer.mp3" id="9_yt8fu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yt8fu"]
@@ -277,13 +277,14 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -37.
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 24, 1.039, -13)
 
 [node name="Van" type="Node3D" parent="."]
-transform = Transform3D(-2.6226834e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.6226834e-08, -25.743507, 1.0385226, -8.257942)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -25.743507, 1.0385226, -8.257942)
 script = ExtResource("6_7yvfd")
 
-[node name="cami" parent="Van" instance=ExtResource("8_yt8fu")]
+[node name="cami2" parent="Van" instance=ExtResource("8_yt8fu")]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Van"]
 stream = ExtResource("9_yt8fu")
+max_distance = 20.0
 doppler_tracking = 2
 
 [connection signal="pressed" from="ui/Control/Buttons/MarginContainer/HBoxContainer/Play" to="ui/Control" method="_on_play_pressed"]

@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cj6usxakrsfli" path="res://assets/images/label4.png" id="4_oirex"]
 [ext_resource type="FontFile" uid="uid://bcjd10553qm61" path="res://assets/fonts/ErraticCursiveItalic-gwDjp.ttf" id="5_lmlse"]
 
-[sub_resource type="World3D" id="World3D_0j804"]
-
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dyp6u"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -20,6 +18,9 @@ background_mode = 2
 background_color = Color(0, 0, 0, 0)
 sky = SubResource("Sky_i7tjp")
 tonemap_mode = 2
+
+[sub_resource type="World3D" id="World3D_0j804"]
+environment = SubResource("Environment_dgkdk")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7r8d6"]
 resource_name = "Behuizing"

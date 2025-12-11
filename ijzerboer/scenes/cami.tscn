@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ymbmajn3a8ya"]
+
+[ext_resource type="PackedScene" uid="uid://e8f5a586tn0u" path="res://assets/cami.glb" id="1_vdn3s"]
+[ext_resource type="Material" uid="uid://d4akr53ewtdty" path="res://shaders/lightmaterial.tres" id="2_vdn3s"]
+
+[node name="cami" instance=ExtResource("1_vdn3s")]
+
+[node name="FrontRightLight" parent="." index="5"]
+surface_material_override/0 = ExtResource("2_vdn3s")
+
+[node name="FrontLeftLight" parent="." index="6"]
+surface_material_override/0 = ExtResource("2_vdn3s")

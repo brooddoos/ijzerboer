@@ -6,17 +6,23 @@ extends Node3D
 ## @onready var left_wheel = $Car/VehicleWheel3D2
 
 # Movement settings
-var acceleration = 20
-var steering = 18.0  # degrees
-
+var default_acceleration = 20
+var accel_multiplier = 0.75 # for drifting
+var default_steering = 20.0  # degrees
+var steer_multiplier = 3.0 # for drifting
 
 # Input
 var speed_input := 0.0
 var turn_input := 0.0
 
+var steering:float # added so you only need to update one variable (see settings /\)
+var acceleration:float # same here
+
+func _ready() -> void:
+	steering = default_steering
+	acceleration = default_acceleration
 
 func _physics_process(delta):
-
 	# Stick car mesh to the ball's position
 	$Car.global_position = $Ball.global_position
 	var speed = $Ball.linear_velocity.length() * 3.6
@@ -46,3 +52,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("lights"):
 		$Car/Mesh/FrontLeftLight.visible = not $Car/Mesh/FrontLeftLight.visible
 		$Car/Mesh/FrontRightLight.visible = not $Car/Mesh/FrontRightLight.visible
+	if Input.is_action_just_pressed("drift"):
+		steering = default_steering*steer_multiplier
+		acceleration = default_acceleration*accel_multiplier
+	if Input.is_action_just_released("drift"):
+		steering = default_steering
+		acceleration = default_acceleration
