@@ -1,9 +1,10 @@
 extends Node3D
 
-@onready var car_mesh = $Car
+@onready var car = $Car
 @onready var ground_ray = $Car/RayCast3D
-##@onready var right_wheel = $Car/VehicleWheel3D
-## @onready var left_wheel = $Car/VehicleWheel3D2
+@onready var front_right_wheel = $Car/Mesh/FrontRightWheel
+@onready var front_left_wheel = $Car/Mesh/FrontLeftWheel
+@onready var ball = $Ball
 
 # Movement settings
 var default_acceleration = 20
@@ -24,8 +25,9 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	# Stick car mesh to the ball's position
-	$Car.global_position = $Ball.global_position
-	var speed = $Ball.linear_velocity.length() * 3.6
+	car.global_position = ball.global_position
+	# Spedometer
+	var speed = ball.linear_velocity.length() * 3.6
 	int(speed)
 	print(speed)
 	# Input
@@ -33,17 +35,14 @@ func _physics_process(delta):
 	turn_input = deg_to_rad(steering) * Input.get_axis("steer_right", "steer_left")
 	# Apply movement force
 	if ground_ray.is_colliding():
-		var forward = car_mesh.transform.basis.z
-		$Ball.apply_central_force(forward * speed_input)
+		var forward = car.transform.basis.z
+		ball.apply_central_force(forward * speed_input)
 	if not ground_ray.is_colliding():
 		return
 
-	# Rotate wheels visually
-	##right_wheel.rotation.y = turn_input
-	##left_wheel.rotation.y = turn_input
-
-	# Turn the car mesh visually only when moving
-	car_mesh.rotate_y(turn_input * delta)
+	front_right_wheel.rotation.y = turn_input
+	front_left_wheel.rotation.y = turn_input
+	car.rotate_y(turn_input * delta)
 
 func _process(delta):
 	#honk

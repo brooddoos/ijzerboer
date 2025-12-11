@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://1qbfol6dsaaq"]
+[gd_scene load_steps=16 format=3 uid="uid://1qbfol6dsaaq"]
 
 [ext_resource type="Script" uid="uid://clfas6djira7w" path="res://scripts/drive.gd" id="1_cpr0p"]
 [ext_resource type="Texture2D" uid="uid://by5cxbxpl1gtw" path="res://assets/images/grid.png" id="1_kiw3p"]
@@ -6,9 +6,8 @@
 [ext_resource type="Material" uid="uid://d4akr53ewtdty" path="res://shaders/lightmaterial.tres" id="4_400sg"]
 [ext_resource type="Script" uid="uid://dir1g2xgg4x7m" path="res://scripts/camera.gd" id="4_aug50"]
 [ext_resource type="PackedScene" uid="uid://cknkwf45wt35w" path="res://assets/3d/tree_temp.glb" id="4_s0nni"]
-[ext_resource type="AudioStream" uid="uid://dis5b6p12s85d" path="res://assets/audio/car-horn-beep.mp3" id="5_g4kob"]
-[ext_resource type="PackedScene" path="res://scenes/Cassette.tscn" id="5_s0nni"]
-[ext_resource type="AudioStream" uid="uid://ddn530hg7gi6m" path="res://assets/audio/jungle.mp3" id="9_g4kob"]
+[ext_resource type="AudioStream" uid="uid://dis5b6p12s85d" path="res://assets/audio/honk.mp3" id="5_g4kob"]
+[ext_resource type="PackedScene" uid="uid://c7hkk4gbb50nh" path="res://scenes/Cassette.tscn" id="5_s0nni"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s0nni"]
 sky_top_color = Color(0.45990002, 0.56794, 0.73, 1)
@@ -35,8 +34,6 @@ uv1_world_triplanar = true
 size = Vector3(500, 5, 500)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_78awf"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_s0nni"]
 
 [node name="Game" type="Node3D"]
 
@@ -69,10 +66,6 @@ angular_damp = 10.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Ball"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 shape = SubResource("SphereShape3D_78awf")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/Ball"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-mesh = SubResource("SphereMesh_s0nni")
 
 [node name="Car" type="Node3D" parent="Node3D"]
 
@@ -119,12 +112,5 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 14.042095, -3.3062696, -19.54
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.4280624, -4.45, 7.631594)
 
 [node name="Control" parent="." instance=ExtResource("5_s0nni")]
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("9_g4kob")
-volume_db = -15.0
-autoplay = true
-bus = &"BGM"
-parameters/looping = true
 
 [editable path="Node3D/Car/Mesh"]

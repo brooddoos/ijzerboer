@@ -1,52 +1,32 @@
-extends Node3D
-@export var cassette_1: MeshInstance3D
-@export var cassette_2: MeshInstance3D
-@export var labelText: Label3D
-@export var speed:int = 2
-@export var rotateRight:bool = false
-@export_multiline var title:String = "placeholder placeholder"
-var up = false
-	
-func setupTape(currentTape): #jesus dit is een rommel, TODO: make this less crap
-	if currentTape["type"] == 1 and $".".name == "cassettelowpoly":
-		labelText.text = currentTape["title"]
-		speed = currentTape["speed"]
-		rotateRight = !currentTape["rotateright"]
-		$".".visible = true
-	elif currentTape["type"] == 2 and $".".name == "Cassette":
-		labelText.text = currentTape["title"]
-		speed = currentTape["speed"]
-		rotateRight = !currentTape["rotateright"]
-		$".".visible = true
-	else:
-		$".".visible = false
-	
+extends Control
+@onready var cassette: Node3D = $SubViewportContainer/SubViewport/Node3D/Cassette
+@onready var animation_player = $SubViewportContainer/SubViewport/Node3D/Cassette/AnimationPlayer
+@onready var title: Label3D  = $SubViewportContainer/SubViewport/Node3D/Cassette/label/text
+@onready var cassette_start_pos = cassette.position.y
+@export var tapes:Dictionary = {
+	1: { "title": "Ijzerman music\nVOLUME 1", "file":"res://assets/audio/jungle.mp3"},
+	2: { "title": "insert very original song title\n", "file":"res://assets/audio/jungle.mp3"},
+}
+@export var current_tape = 1
+func _ready() -> void:
+	animation_player.play()
 func _process(delta: float) -> void:
-	if rotateRight:
-		if $".".name == "cassettelowpoly":
-			cassette_1.rotation.x += delta*-speed
-			cassette_2.rotation.y += delta*-speed
-		else:
-			cassette_1.rotation.z += delta*-speed
-			cassette_2.rotation.z += delta*-speed
-	else:
-		if $".".name == "cassettelowpoly":
-			cassette_1.rotation.x += delta*speed
-			cassette_2.rotation.y += delta*speed
-		else:
-			cassette_1.rotation.z += delta*speed
-			cassette_2.rotation.z += delta*speed
-			
-	if Input.is_action_just_pressed("infobutton"):
-		up = true
-	if Input.is_action_just_released("infobutton"):
-		up = false
-		
-	if up:
-		$".".position.y += (2.734-$".".position.y)*delta*2
-	else:
-		$".".position.y += (1.234-$".".position.y)*delta*2
-		
+	if Input.is_action_just_pressed("info"):
+		var tween = get_tree().create_tween()
+		tween.set_trans(Tween.TRANS_SINE)
+		tween.tween_property(cassette, "position:y", cassette_start_pos + 0.02, 0.15)
 
-func _on_control_new_tape(currentTape) -> void:
-	setupTape(currentTape)
+	if Input.is_action_just_released("info"):
+		var tween = get_tree().create_tween()
+		tween.set_trans(Tween.TRANS_SINE)
+		tween.tween_property(cassette, "position:y", cassette_start_pos, 0.15)
+	if Input.is_action_just_pressed("cass  ette"):
+		if current_tape != 2:
+			current_tape = current_tape + 1
+		else:
+			current_tape = 1
+			
+		title.text=tapes[current_tape]["title"]
+		$AudioStreamPlayer.stream = load(tapes[current_tape]["file"])
+		$AudioStreamPlayer.play()
+		
