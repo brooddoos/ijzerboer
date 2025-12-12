@@ -7,8 +7,8 @@ extends Control
 @onready var cassette_up := false
 @export var tapes:Dictionary = {
 	1: { "title": "Jungle Mixtape\nVOLUME 1", "file":"res://assets/audio/jungle.ogg"},
-	2: { "title": "Asleep and Dreaming\nBy: Arcologies ", "file":"res://assets/audio/asleepanddreaming.mp3"},
-	3: { "title": "Mega Dance Mix", "file":"res://assets/audio/megadance.ogg"},
+	#2: { "title": "Asleep and Dreaming\nBy: Arcologies ", "file":"res://assets/audio/asleepanddreaming.mp3"},
+	2: { "title": "Mega Dance Mix", "file":"res://assets/audio/megadance.ogg"},
 	
 }
 @export var current_tape = 1

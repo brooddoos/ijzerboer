@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://1qbfol6dsaaq"]
+[gd_scene load_steps=32 format=3 uid="uid://1qbfol6dsaaq"]
 
 [ext_resource type="Script" uid="uid://clfas6djira7w" path="res://scripts/drive.gd" id="1_cpr0p"]
 [ext_resource type="Texture2D" uid="uid://by5cxbxpl1gtw" path="res://assets/images/grid.png" id="1_kiw3p"]
@@ -8,7 +8,7 @@
 [ext_resource type="Material" uid="uid://c5jnsmgq8ymji" path="res://shaders/aesthetic.tres" id="4_g4kob"]
 [ext_resource type="PackedScene" uid="uid://cknkwf45wt35w" path="res://assets/3d/tree_temp.glb" id="4_s0nni"]
 [ext_resource type="Shader" uid="uid://s60rywsqspcx" path="res://shaders/aesthetic.gdshader" id="5_3xj3m"]
-[ext_resource type="PackedScene" uid="uid://bq3i3dy8sx7qc" path="res://scenes/Cassette.tscn" id="5_s0nni"]
+[ext_resource type="PackedScene" uid="uid://10khovlo01ra" path="res://scenes/Cassette.tscn" id="5_s0nni"]
 [ext_resource type="Texture2D" uid="uid://bl3v4utw7o846" path="res://assets/cami_wheel.png" id="6_mcffj"]
 [ext_resource type="AudioStream" uid="uid://bmqugfyq7tfhe" path="res://assets/audio/honk.ogg" id="8_3xj3m"]
 [ext_resource type="Texture2D" uid="uid://bvdtxoxhkl374" path="res://assets/images/spedometer_outline.png" id="11_2rd6h"]
@@ -78,6 +78,12 @@ shader = ExtResource("5_3xj3m")
 shader_parameter/scale = 0.1
 shader_parameter/albedo_texture = ExtResource("6_mcffj")
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2rd6h"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7ua8r"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r7sob"]
+
 [node name="Game" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -86,72 +92,72 @@ environment = SubResource("Environment_aug50")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 18.369925, 0)
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="Snow" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.0929794, 0)
 amount = 150
 lifetime = 1.21
 process_material = SubResource("ParticleProcessMaterial_3xj3m")
 draw_pass_1 = SubResource("QuadMesh_mcffj")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 transform = Transform3D(500, 0, 0, 0, 5, 0, 0, 0, 500, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_kiw3p")
 mesh = SubResource("BoxMesh_cpr0p")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_78awf")
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Van" type="Node3D" parent="."]
 script = ExtResource("1_cpr0p")
 
-[node name="Ball" type="RigidBody3D" parent="Node3D"]
+[node name="Ball" type="RigidBody3D" parent="Van"]
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_3xj3m")
 angular_damp = 10.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Ball"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Van/Ball"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 shape = SubResource("SphereShape3D_78awf")
 
-[node name="Car" type="Node3D" parent="Node3D"]
+[node name="Car" type="Node3D" parent="Van"]
 
-[node name="Mesh" parent="Node3D/Car" instance=ExtResource("3_s0nni")]
+[node name="Mesh" parent="Van/Car" instance=ExtResource("3_s0nni")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.57, 0)
 
-[node name="Van" parent="Node3D/Car/Mesh" index="0"]
+[node name="Van" parent="Van/Car/Mesh" index="0"]
 surface_material_override/0 = ExtResource("4_g4kob")
 
-[node name="BackLeftWheel" parent="Node3D/Car/Mesh" index="1"]
+[node name="BackLeftWheel" parent="Van/Car/Mesh" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_2rd6h")
 
-[node name="BackRightWheel" parent="Node3D/Car/Mesh" index="2"]
+[node name="BackRightWheel" parent="Van/Car/Mesh" index="2"]
 surface_material_override/0 = SubResource("ShaderMaterial_7ua8r")
 
-[node name="FrontLeftWheel" parent="Node3D/Car/Mesh" index="3"]
+[node name="FrontLeftWheel" parent="Van/Car/Mesh" index="3"]
 surface_material_override/0 = SubResource("ShaderMaterial_r7sob")
 
-[node name="FrontRightWheel" parent="Node3D/Car/Mesh" index="4"]
+[node name="FrontRightWheel" parent="Van/Car/Mesh" index="4"]
 surface_material_override/0 = SubResource("ShaderMaterial_y5y3l")
 
-[node name="FrontRightLight" parent="Node3D/Car/Mesh" index="5"]
+[node name="FrontRightLight" parent="Van/Car/Mesh" index="5"]
 surface_material_override/0 = ExtResource("4_400sg")
 
-[node name="FrontLeftLight" parent="Node3D/Car/Mesh" index="6"]
+[node name="FrontLeftLight" parent="Van/Car/Mesh" index="6"]
 surface_material_override/0 = ExtResource("4_400sg")
 
-[node name="SpringArm3D" type="SpringArm3D" parent="Node3D/Car"]
+[node name="SpringArm3D" type="SpringArm3D" parent="Van/Car"]
 collision_mask = 0
 spring_length = 20.0
 margin = 1.0
 
-[node name="RayCast3D" type="RayCast3D" parent="Node3D/Car"]
+[node name="RayCast3D" type="RayCast3D" parent="Van/Car"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1, 0)
 hit_from_inside = true
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Node3D/Car"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Van/Car"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.082690716, -0.2672081, 0.6393982)
 stream = ExtResource("8_3xj3m")
 volume_db = 10.0
@@ -159,24 +165,15 @@ max_db = 6.0
 max_distance = 100.0
 bus = &"Car"
 
-[node name="cameraPoint" type="Node3D" parent="Node3D/Car"]
+[node name="cameraPoint" type="Node3D" parent="Van/Car"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -11)
 metadata/DO_NOT_REMOVE_ME = ""
 
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("camion", "campos")]
+[node name="Camera3D" type="Camera3D" parent="Van" node_paths=PackedStringArray("camion", "campos")]
 transform = Transform3D(-1, 4.371139e-08, -7.5710346e-08, 0, 0.8660254, 0.5, 8.742278e-08, 0.5, -0.8660254, 0, 6, -11)
 script = ExtResource("4_aug50")
-camion = NodePath("../Node3D/Car")
-campos = NodePath("../Node3D/Car/cameraPoint")
-
-[node name="tree_temp3" parent="." instance=ExtResource("4_s0nni")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.8489985, -4.1745024, 43.555683)
-
-[node name="tree_temp2" parent="." instance=ExtResource("4_s0nni")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 14.042095, -3.3062696, -19.5496)
-
-[node name="tree_temp" parent="." instance=ExtResource("4_s0nni")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.4280624, -4.45, 7.631594)
+camion = NodePath("../Car")
+campos = NodePath("../Car/cameraPoint")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -223,4 +220,30 @@ offset_top = -160.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[editable path="Node3D/Car/Mesh"]
+[node name="Assets" type="Node3D" parent="."]
+
+[node name="tree_temp" parent="Assets" instance=ExtResource("4_s0nni")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.4280624, -4.45, 7.631594)
+
+[node name="tree_temp2" parent="Assets" instance=ExtResource("4_s0nni")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 14.042095, -3.3062696, -19.5496)
+
+[node name="tree_temp3" parent="Assets" instance=ExtResource("4_s0nni")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.8489985, -4.1745024, 43.555683)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -3, 0)
+
+[node name="Area3D" type="Area3D" parent="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D/Area3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("CylinderShape3D_2rd6h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("CapsuleMesh_7ua8r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("CapsuleShape3D_r7sob")
+
+[editable path="Van/Car/Mesh"]
