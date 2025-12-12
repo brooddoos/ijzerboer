@@ -4,5 +4,5 @@ extends Camera3D
 @export var campos:Node3D
 
 func _physics_process(delta : float):
-  global_position = lerp($".".position, campos.global_position , 0.05)
+  global_position = lerp($".".position, campos.global_position , 0.1)
   look_at(camion.global_position)

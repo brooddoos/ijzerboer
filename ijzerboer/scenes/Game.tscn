@@ -1,13 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://1qbfol6dsaaq"]
+[gd_scene load_steps=24 format=3 uid="uid://1qbfol6dsaaq"]
 
 [ext_resource type="Script" uid="uid://clfas6djira7w" path="res://scripts/drive.gd" id="1_cpr0p"]
 [ext_resource type="Texture2D" uid="uid://by5cxbxpl1gtw" path="res://assets/images/grid.png" id="1_kiw3p"]
 [ext_resource type="PackedScene" uid="uid://e8f5a586tn0u" path="res://assets/cami.glb" id="3_s0nni"]
 [ext_resource type="Material" uid="uid://d4akr53ewtdty" path="res://shaders/lightmaterial.tres" id="4_400sg"]
 [ext_resource type="Script" uid="uid://dir1g2xgg4x7m" path="res://scripts/camera.gd" id="4_aug50"]
+[ext_resource type="Material" uid="uid://c5jnsmgq8ymji" path="res://shaders/aesthetic.tres" id="4_g4kob"]
 [ext_resource type="PackedScene" uid="uid://cknkwf45wt35w" path="res://assets/3d/tree_temp.glb" id="4_s0nni"]
+[ext_resource type="Shader" uid="uid://s60rywsqspcx" path="res://shaders/aesthetic.gdshader" id="5_3xj3m"]
 [ext_resource type="AudioStream" uid="uid://dis5b6p12s85d" path="res://assets/audio/honk.mp3" id="5_g4kob"]
-[ext_resource type="PackedScene" uid="uid://c7hkk4gbb50nh" path="res://scenes/Cassette.tscn" id="5_s0nni"]
+[ext_resource type="PackedScene" uid="uid://10khovlo01ra" path="res://scenes/cassette.tscn" id="5_s0nni"]
+[ext_resource type="Texture2D" uid="uid://bl3v4utw7o846" path="res://assets/cami_wheel.png" id="6_mcffj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s0nni"]
 sky_top_color = Color(0.45990002, 0.56794, 0.73, 1)
@@ -33,7 +36,33 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_78awf"]
 size = Vector3(500, 5, 500)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3xj3m"]
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_78awf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2rd6h"]
+render_priority = 0
+shader = ExtResource("5_3xj3m")
+shader_parameter/scale = 0.1
+shader_parameter/albedo_texture = ExtResource("6_mcffj")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ua8r"]
+render_priority = 0
+shader = ExtResource("5_3xj3m")
+shader_parameter/scale = 0.1
+shader_parameter/albedo_texture = ExtResource("6_mcffj")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r7sob"]
+render_priority = 0
+shader = ExtResource("5_3xj3m")
+shader_parameter/scale = 0.1
+shader_parameter/albedo_texture = ExtResource("6_mcffj")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y5y3l"]
+render_priority = 0
+shader = ExtResource("5_3xj3m")
+shader_parameter/scale = 0.1
+shader_parameter/albedo_texture = ExtResource("6_mcffj")
 
 [node name="Game" type="Node3D"]
 
@@ -61,6 +90,7 @@ script = ExtResource("1_cpr0p")
 
 [node name="Ball" type="RigidBody3D" parent="Node3D"]
 collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_3xj3m")
 angular_damp = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Ball"]
@@ -71,6 +101,21 @@ shape = SubResource("SphereShape3D_78awf")
 
 [node name="Mesh" parent="Node3D/Car" instance=ExtResource("3_s0nni")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.57, 0)
+
+[node name="Van" parent="Node3D/Car/Mesh" index="0"]
+surface_material_override/0 = ExtResource("4_g4kob")
+
+[node name="BackLeftWheel" parent="Node3D/Car/Mesh" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_2rd6h")
+
+[node name="BackRightWheel" parent="Node3D/Car/Mesh" index="2"]
+surface_material_override/0 = SubResource("ShaderMaterial_7ua8r")
+
+[node name="FrontLeftWheel" parent="Node3D/Car/Mesh" index="3"]
+surface_material_override/0 = SubResource("ShaderMaterial_r7sob")
+
+[node name="FrontRightWheel" parent="Node3D/Car/Mesh" index="4"]
+surface_material_override/0 = SubResource("ShaderMaterial_y5y3l")
 
 [node name="FrontRightLight" parent="Node3D/Car/Mesh" index="5"]
 surface_material_override/0 = ExtResource("4_400sg")
@@ -90,6 +135,9 @@ hit_from_inside = true
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Node3D/Car"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.082690716, -0.2672081, 0.6393982)
 stream = ExtResource("5_g4kob")
+volume_db = 10.0
+max_db = 6.0
+max_distance = 100.0
 bus = &"Car"
 
 [node name="cameraPoint" type="Node3D" parent="Node3D/Car"]

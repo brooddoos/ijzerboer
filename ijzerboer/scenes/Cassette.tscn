@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://c7hkk4gbb50nh"]
+[gd_scene load_steps=34 format=4 uid="uid://10khovlo01ra"]
 
 [ext_resource type="Script" uid="uid://cj2tmqcbv7qk2" path="res://scripts/cassette.gd" id="1_68kt0"]
 [ext_resource type="Texture2D" uid="uid://ctav3jkfeasug" path="res://assets/3d/cassettelowpoly_Behuizing.png" id="2_68kt0"]

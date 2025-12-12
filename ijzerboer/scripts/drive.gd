@@ -7,7 +7,7 @@ extends Node3D
 @onready var ball = $Ball
 
 # Movement settings
-var default_acceleration = 13
+var default_acceleration = 20
 var accel_multiplier = 0.75 # for drifting
 var default_steering = 30.0  # degrees
 var steer_multiplier = 3.0 # for drifting
@@ -27,9 +27,8 @@ func _physics_process(delta):
 	# Stick car mesh to the ball's position
 	car.global_position = ball.global_position
 	# Spedometer
-	var speed = ball.linear_velocity.length() * 3.6
-	int(speed)
-	print(speed)
+	var speed = int(ball.linear_velocity.length() * 3.6)
+	
 	# Input
 	speed_input = Input.get_axis("brake", "accelerate") * acceleration
 	turn_input = deg_to_rad(steering) * Input.get_axis("steer_right", "steer_left")
