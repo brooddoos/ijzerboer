@@ -7,9 +7,9 @@ extends Node3D
 @onready var ball = $Ball
 
 # Movement settings
-var default_acceleration = 20
+var default_acceleration = 13
 var accel_multiplier = 0.75 # for drifting
-var default_steering = 20.0  # degrees
+var default_steering = 30.0  # degrees
 var steer_multiplier = 3.0 # for drifting
 
 # Input
@@ -41,7 +41,7 @@ func _physics_process(delta):
 		return
 
 	front_right_wheel.rotation.y = turn_input
-	front_left_wheel.rotation.y = turn_input
+	front_left_wheel.rotation.y = -turn_input
 	car.rotate_y(turn_input * delta)
 
 func _process(delta):
