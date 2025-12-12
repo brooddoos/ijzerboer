@@ -28,8 +28,9 @@ func _physics_process(delta):
 	# Stick car mesh to the ball's position
 	car.global_position = ball.global_position
 	# Spedometer
-	var speed = int(ball.linear_velocity.length() * 3.6)
-	$"../UI/Spedometer".text = str(speed   )
+	var speed = int(ball.linear_velocity.x.length() * 3.6 / 3)
+	$"../UI/spedometer/Spedometer".text = str(speed) + " KM/H"
+	$"../UI/spedometer/needle".rotation = deg_to_rad(-150+abs(int(speed)))
 	
 	# Input
 	speed_input = Input.get_axis("brake", "accelerate") * acceleration

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://1qbfol6dsaaq"]
+[gd_scene load_steps=29 format=3 uid="uid://1qbfol6dsaaq"]
 
 [ext_resource type="Script" uid="uid://clfas6djira7w" path="res://scripts/drive.gd" id="1_cpr0p"]
 [ext_resource type="Texture2D" uid="uid://by5cxbxpl1gtw" path="res://assets/images/grid.png" id="1_kiw3p"]
@@ -8,9 +8,11 @@
 [ext_resource type="Material" uid="uid://c5jnsmgq8ymji" path="res://shaders/aesthetic.tres" id="4_g4kob"]
 [ext_resource type="PackedScene" uid="uid://cknkwf45wt35w" path="res://assets/3d/tree_temp.glb" id="4_s0nni"]
 [ext_resource type="Shader" uid="uid://s60rywsqspcx" path="res://shaders/aesthetic.gdshader" id="5_3xj3m"]
-[ext_resource type="PackedScene" uid="uid://10khovlo01ra" path="res://scenes/Cassette.tscn" id="5_s0nni"]
+[ext_resource type="PackedScene" uid="uid://bq3i3dy8sx7qc" path="res://scenes/Cassette.tscn" id="5_s0nni"]
 [ext_resource type="Texture2D" uid="uid://bl3v4utw7o846" path="res://assets/cami_wheel.png" id="6_mcffj"]
 [ext_resource type="AudioStream" uid="uid://bmqugfyq7tfhe" path="res://assets/audio/honk.ogg" id="8_3xj3m"]
+[ext_resource type="Texture2D" uid="uid://bvdtxoxhkl374" path="res://assets/images/spedometer_outline.png" id="11_2rd6h"]
+[ext_resource type="Texture2D" uid="uid://cukwu6sx7ul8w" path="res://assets/images/spedometer_needle.png" id="12_7ua8r"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s0nni"]
 sky_top_color = Color(0.45990002, 0.56794, 0.73, 1)
@@ -184,12 +186,32 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Spedometer" type="TextEdit" parent="UI"]
+[node name="spedometer" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 123.0
+offset_bottom = 135.0
+
+[node name="bg" type="Sprite2D" parent="UI/spedometer"]
+position = Vector2(61, 58)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("11_2rd6h")
+
+[node name="needle" type="Sprite2D" parent="UI/spedometer"]
+position = Vector2(61, 58)
+rotation = -2.7052603
+scale = Vector2(0.15000002, 0.15000002)
+texture = ExtResource("12_7ua8r")
+
+[node name="Spedometer" type="Label" parent="UI/spedometer"]
+texture_filter = 2
 layout_mode = 0
-offset_left = 8.0
-offset_top = 416.0
-offset_right = 120.0
-offset_bottom = 448.0
+offset_left = 2.0
+offset_top = 113.0
+offset_right = 121.0
+offset_bottom = 136.0
+text = "0 KM/H"
+horizontal_alignment = 1
 
 [node name="Control" parent="UI" instance=ExtResource("5_s0nni")]
 layout_mode = 1

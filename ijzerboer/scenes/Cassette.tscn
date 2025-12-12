@@ -1,10 +1,10 @@
-[gd_scene load_steps=34 format=4 uid="uid://10khovlo01ra"]
+[gd_scene load_steps=34 format=4 uid="uid://bq3i3dy8sx7qc"]
 
 [ext_resource type="Script" uid="uid://cj2tmqcbv7qk2" path="res://scripts/cassette.gd" id="1_68kt0"]
 [ext_resource type="Texture2D" uid="uid://ctav3jkfeasug" path="res://assets/3d/cassettelowpoly_Behuizing.png" id="2_68kt0"]
+[ext_resource type="FontFile" uid="uid://d0vhpjp132hd8" path="res://assets/fonts/TrashHand.TTF" id="4_0j804"]
 [ext_resource type="Texture2D" uid="uid://cj6usxakrsfli" path="res://assets/images/label4.png" id="4_oirex"]
 [ext_resource type="AudioStream" uid="uid://ctjlksko4p480" path="res://assets/audio/jungle.ogg" id="5_68kt0"]
-[ext_resource type="FontFile" uid="uid://bcjd10553qm61" path="res://assets/fonts/ErraticCursiveItalic-gwDjp.ttf" id="5_lmlse"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dyp6u"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -511,16 +511,27 @@ _data = {
 
 [node name="Control" type="Control"]
 layout_mode = 3
-anchor_right = 0.062000003
-anchor_bottom = 0.05
-offset_right = -39.68
-offset_bottom = -24.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_68kt0")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-layout_mode = 0
-offset_right = 183.0
-offset_bottom = 172.66669
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -496.0
+offset_top = -325.0
+offset_right = 293.0
+offset_bottom = 187.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
@@ -528,7 +539,7 @@ world_3d = SubResource("World3D_0j804")
 transparent_bg = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
-size = Vector2i(183, 172)
+size = Vector2i(789, 512)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
@@ -581,14 +592,14 @@ pixel_size = 0.0026
 texture = ExtResource("4_oirex")
 
 [node name="text" type="Label3D" parent="SubViewportContainer/SubViewport/Node3D/Cassette/label"]
-transform = Transform3D(-1.0000002, 0, 8.7422805e-08, 0, 1.0000002, 0, -8.7422805e-08, 0, -1.0000002, 0, 0.99, 0.01)
+transform = Transform3D(-1.0000002, 0, 8.7422805e-08, 0, 1.0000002, 0, -8.7422805e-08, 0, -1.0000002, 0, 0.95, 0.01)
 sorting_offset = 1.0
 modulate = Color(0, 0, 0, 1)
-text = "zo'n coole mixtape
-ededdeeddeeded"
-font = ExtResource("5_lmlse")
-font_size = 80
-line_spacing = -30.0
+text = "mixtape 1902809
+ "
+font = ExtResource("4_0j804")
+font_size = 75
+line_spacing = -18.0
 
 [node name="lines" type="Label3D" parent="SubViewportContainer/SubViewport/Node3D/Cassette/label"]
 transform = Transform3D(-1.0000002, 0, 8.7422805e-08, 0, 1.0000002, 0, -8.7422805e-08, 0, -1.0000002, 0, 0.91, 0.01)
@@ -596,6 +607,7 @@ sorting_offset = 1.0
 modulate = Color(0, 0, 0, 1)
 text = "_________________________________________________
 _________________________________________________"
+outline_size = 127
 line_spacing = 16.0
 
 [node name="copyright" type="Label3D" parent="SubViewportContainer/SubViewport/Node3D/Cassette/label"]
