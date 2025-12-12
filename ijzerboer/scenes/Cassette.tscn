@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cj2tmqcbv7qk2" path="res://scripts/cassette.gd" id="1_68kt0"]
 [ext_resource type="Texture2D" uid="uid://ctav3jkfeasug" path="res://assets/3d/cassettelowpoly_Behuizing.png" id="2_68kt0"]
 [ext_resource type="Texture2D" uid="uid://cj6usxakrsfli" path="res://assets/images/label4.png" id="4_oirex"]
-[ext_resource type="AudioStream" uid="uid://ddn530hg7gi6m" path="res://assets/audio/jungle.mp3" id="5_68kt0"]
+[ext_resource type="AudioStream" uid="uid://ctjlksko4p480" path="res://assets/audio/jungle.ogg" id="5_68kt0"]
 [ext_resource type="FontFile" uid="uid://bcjd10553qm61" path="res://assets/fonts/ErraticCursiveItalic-gwDjp.ttf" id="5_lmlse"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dyp6u"]
@@ -511,26 +511,16 @@ _data = {
 
 [node name="Control" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchor_right = 0.062000003
+anchor_bottom = 0.05
+offset_right = -39.68
+offset_bottom = -24.0
 script = ExtResource("1_68kt0")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 1.0805556
-anchor_right = 1.0
-anchor_bottom = 1.0805556
-offset_left = -272.0
-offset_top = -282.0
-offset_right = -9.0
-offset_bottom = -26.0
-grow_horizontal = 0
-grow_vertical = 0
+layout_mode = 0
+offset_right = 183.0
+offset_bottom = 172.66669
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
@@ -538,8 +528,7 @@ world_3d = SubResource("World3D_0j804")
 transparent_bg = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
-size = Vector2i(263, 256)
-size_2d_override = Vector2i(1024, 1024)
+size = Vector2i(183, 172)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
@@ -636,23 +625,6 @@ environment = SubResource("Environment_dgkdk")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Node3D"]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
-
-[node name="ColorRect2" type="ColorRect" parent="."]
-visible = false
-z_index = -1
-custom_minimum_size = Vector2(256, 128)
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -315.0
-offset_top = -102.0
-offset_right = 108.0
-offset_bottom = 235.0
-grow_horizontal = 0
-grow_vertical = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_68kt0")

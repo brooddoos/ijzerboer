@@ -44,11 +44,17 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/brooddoos"]
-layout_mode = 0
-offset_left = -65.0
-offset_top = 170.0
-offset_right = 339.0
-offset_bottom = 284.0
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -64.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_font_sizes/normal_font_size = 50
 text = "Brooddoos"
 horizontal_alignment = 1
@@ -62,7 +68,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="j4y" type="TextureRect" parent="CenterContainer"]
-custom_minimum_size = Vector2(260, 260)
+custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
 texture = ExtResource("5_mgj8c")
 expand_mode = 3

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://1qbfol6dsaaq"]
+[gd_scene load_steps=27 format=3 uid="uid://1qbfol6dsaaq"]
 
 [ext_resource type="Script" uid="uid://clfas6djira7w" path="res://scripts/drive.gd" id="1_cpr0p"]
 [ext_resource type="Texture2D" uid="uid://by5cxbxpl1gtw" path="res://assets/images/grid.png" id="1_kiw3p"]
@@ -8,9 +8,9 @@
 [ext_resource type="Material" uid="uid://c5jnsmgq8ymji" path="res://shaders/aesthetic.tres" id="4_g4kob"]
 [ext_resource type="PackedScene" uid="uid://cknkwf45wt35w" path="res://assets/3d/tree_temp.glb" id="4_s0nni"]
 [ext_resource type="Shader" uid="uid://s60rywsqspcx" path="res://shaders/aesthetic.gdshader" id="5_3xj3m"]
-[ext_resource type="AudioStream" uid="uid://dis5b6p12s85d" path="res://assets/audio/honk.mp3" id="5_g4kob"]
-[ext_resource type="PackedScene" uid="uid://10khovlo01ra" path="res://scenes/cassette.tscn" id="5_s0nni"]
+[ext_resource type="PackedScene" uid="uid://10khovlo01ra" path="res://scenes/Cassette.tscn" id="5_s0nni"]
 [ext_resource type="Texture2D" uid="uid://bl3v4utw7o846" path="res://assets/cami_wheel.png" id="6_mcffj"]
+[ext_resource type="AudioStream" uid="uid://bmqugfyq7tfhe" path="res://assets/audio/honk.ogg" id="8_3xj3m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s0nni"]
 sky_top_color = Color(0.45990002, 0.56794, 0.73, 1)
@@ -24,6 +24,18 @@ sky_material = SubResource("ProceduralSkyMaterial_s0nni")
 [sub_resource type="Environment" id="Environment_aug50"]
 background_mode = 2
 sky = SubResource("Sky_aug50")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3xj3m"]
+emission_shape_scale = Vector3(100, 10, 100)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3xj3m"]
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_mcffj"]
+material = SubResource("StandardMaterial3D_3xj3m")
+size = Vector2(0.2, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kiw3p"]
 albedo_texture = ExtResource("1_kiw3p")
@@ -73,6 +85,11 @@ environment = SubResource("Environment_aug50")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 18.369925, 0)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.0929794, 0)
+amount = 150
+lifetime = 1.21
+process_material = SubResource("ParticleProcessMaterial_3xj3m")
+draw_pass_1 = SubResource("QuadMesh_mcffj")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 0)
@@ -134,7 +151,7 @@ hit_from_inside = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Node3D/Car"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.082690716, -0.2672081, 0.6393982)
-stream = ExtResource("5_g4kob")
+stream = ExtResource("8_3xj3m")
 volume_db = 10.0
 max_db = 6.0
 max_distance = 100.0
@@ -159,6 +176,29 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 14.042095, -3.3062696, -19.54
 [node name="tree_temp" parent="." instance=ExtResource("4_s0nni")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.4280624, -4.45, 7.631594)
 
-[node name="Control" parent="." instance=ExtResource("5_s0nni")]
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Spedometer" type="TextEdit" parent="UI"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 416.0
+offset_right = 120.0
+offset_bottom = 448.0
+
+[node name="Control" parent="UI" instance=ExtResource("5_s0nni")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = -192.0
+offset_top = -160.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [editable path="Node3D/Car/Mesh"]

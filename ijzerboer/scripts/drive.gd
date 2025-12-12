@@ -11,6 +11,7 @@ var default_acceleration = 20
 var accel_multiplier = 0.75 # for drifting
 var default_steering = 30.0  # degrees
 var steer_multiplier = 3.0 # for drifting
+var turn_minimum = 0.75 # minimum speed to turn
 
 # Input
 var speed_input := 0.0
@@ -28,11 +29,15 @@ func _physics_process(delta):
 	car.global_position = ball.global_position
 	# Spedometer
 	var speed = int(ball.linear_velocity.length() * 3.6)
+	$"../UI/Spedometer".text = str(speed   )
 	
 	# Input
 	speed_input = Input.get_axis("brake", "accelerate") * acceleration
 	turn_input = deg_to_rad(steering) * Input.get_axis("steer_right", "steer_left")
 	# Apply movement force
+	if turn_minimum > ball.linear_velocity.length():
+		pass
+		#nog maken!!!!
 	if ground_ray.is_colliding():
 		var forward = car.transform.basis.z
 		ball.apply_central_force(forward * speed_input)

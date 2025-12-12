@@ -4,11 +4,11 @@ extends Control
 @onready var buttons: PanelContainer = $Buttons
 
 const splashTexts = [ #voeg later mss meer toe, idk
-	"im uhhh the iron metal collector man",
-	"Man, man, man, ... miserie, miserie",
-	"a great source of iron",
-	"a not so great source of iron",
-	"im picking up metals wow",
+	"Man, man, man, miserie, miserie, miserie!",
+	"Hier zijn geen ijzertekorten te bespeuren!",
+	"Mijnen infra -fra -fra -fra infrastructuur!",
+	"Nu ook op Windows 98!",
+	"Tegels, natuursteen, parket, Imp... Ah just nee, miljaar. "
 ]
 
 func _ready() -> void:

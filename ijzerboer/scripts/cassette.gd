@@ -3,10 +3,12 @@ extends Control
 @onready var animation_player = $SubViewportContainer/SubViewport/Node3D/Cassette/AnimationPlayer
 @onready var title: Label3D  = $SubViewportContainer/SubViewport/Node3D/Cassette/label/text
 @onready var cassette_start_pos = cassette.position.y
-@onready var cassette_up := false
+@onready var cassette_up := true
 @export var tapes:Dictionary = {
-	1: { "title": "Jungle Mixtape\nVOLUME 1", "file":"res://assets/audio/jungle.mp3"},
-	2: { "title": "Asleep and Dreaming\nBy: Arcologies ", "file":"res://assets/audio/asleepanddreaming.mp3"},
+	1: { "title": "Jungle Mixtape\nVOLUME 1", "file":"res://assets/audio/jungle.ogg"},
+	#2: { "title": "Asleep and Dreaming\nBy: Arcologies ", "file":"res://assets/audio/asleepanddreaming.mp3"},
+	2: { "title": "Mega Dance Mix", "file":"res://assets/audio/megadance.ogg"},
+	
 }
 @export var current_tape = 1
 
@@ -19,17 +21,16 @@ func allTween(transistionType:Tween.TransitionType,object,property:String,vars,t
 
 func _ready() -> void:
 	animation_player.play("cassette_animation")
-	cassette.position.y = cassette_start_pos-0.05
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("info"):
 		cassette_up = not cassette_up
 		if cassette_up:
-			allTween(Tween.TRANS_EXPO,cassette,"position:y",cassette_start_pos - 0.05,0.25)
-		else:
 			allTween(Tween.TRANS_EXPO,cassette,"position:y",cassette_start_pos,0.25)
+		else:
+			allTween(Tween.TRANS_EXPO,cassette,"position:y",cassette_start_pos - 0.05,0.25)
 
-	if Input.is_action_just_pressed("cassette"):
+	if Input.is_action_just_pressed("cassette") or not $AudioStreamPlayer.playing:
 		if current_tape != len(tapes):
 			current_tape += 1
 		else:
@@ -40,7 +41,7 @@ func _process(delta: float) -> void:
 		title.text=tapes[current_tape]["title"]
 		allTween(Tween.TRANS_EXPO,cassette,"position:y",cassette_start_pos - 0.05,0.25)
 		cassette_up = false
-		
 		$AudioStreamPlayer.stream = load(tapes[current_tape]["file"])
 		$AudioStreamPlayer.play()
+		
 		
