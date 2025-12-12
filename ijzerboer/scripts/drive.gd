@@ -41,7 +41,7 @@ func _physics_process(delta):
 		return
 
 	front_right_wheel.rotation.y = turn_input
-	front_left_wheel.rotation.y = -turn_input
+	front_left_wheel.rotation.y = turn_input+deg_to_rad(180)
 	car.rotate_y(turn_input * delta)
 
 func _process(delta):
