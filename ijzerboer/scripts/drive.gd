@@ -1,17 +1,25 @@
 extends Node3D
 
 @onready var car = $Car
+@onready var ball = $Ball
 @onready var ground_ray = $Car/RayCast3D
+@onready var needle: Sprite2D = $"../UI/spedometer/needle"
 @onready var front_right_wheel = $Car/Mesh/FrontRightWheel
 @onready var front_left_wheel = $Car/Mesh/FrontLeftWheel
-@onready var ball = $Ball
+@onready var back_left_wheel: MeshInstance3D = $Car/Mesh/BackLeftWheel
+@onready var back_right_wheel: MeshInstance3D = $Car/Mesh/BackRightWheel
+
+@onready var drift_2: CPUParticles3D = $Car/Mesh/drift2
+@onready var drift: CPUParticles3D = $Car/Mesh/drift
+
 
 # Movement settings
-var default_acceleration = 20
-var accel_multiplier = 0.75 # for drifting
-var default_steering = 30.0  # degrees
-var steer_multiplier = 3.0 # for drifting
-var turn_minimum = 0.75 # minimum speed to turn
+var default_acceleration = 20	# read the variable names too lmao
+var accel_multiplier = 0.75 	# for drifting
+var default_steering = 30.0 	# degrees
+var steer_multiplier = 2.0 		# for drifting
+var turn_minimum = 2.0 			# minimum speed to turn
+var grip = 10.0 				# amount of grip the tires have
 
 # Input
 var speed_input := 0.0
@@ -19,34 +27,62 @@ var turn_input := 0.0
 
 var steering:float # added so you only need to update one variable (see settings /\)
 var acceleration:float # same here
+var smoothing:float = 1.0
+	
+func anti_slip_function(grip):
+	var velocity = ball.linear_velocity
+	var forward = car.global_transform.basis.z.normalized()
 
-func _ready() -> void:
-	steering = default_steering
-	acceleration = default_acceleration
-	ball.linear_damp = 0 # TODO: veranderen en watanook vr physics later
+	var forward_velocity = forward * velocity.dot(forward) #dot() berekent hvl van de snelheid vooruit is
+	var sideways_velocity = velocity - forward_velocity #wat overblijft is zijwaarts (dit willen we dus nie)
+	
+	ball.apply_central_force(-sideways_velocity * grip)
 	
 func _physics_process(delta):
 	# Stick car mesh to the ball's position
 	car.global_position = ball.global_position
+	
 	# Spedometer
 	var speed = int(ball.linear_velocity.length() * 3.6 / 3.0)
 	$"../UI/spedometer/Spedometer".text = str(speed) + " KM/H"
-	$"../UI/spedometer/needle".rotation = deg_to_rad(-150+abs(int(speed)))
+	var needle_orientation = -150+abs(int(speed))
+	needle.rotation = deg_to_rad(clamp(needle_orientation, -155, 150))
+	if needle_orientation > 150.0:
+		needle.rotation += deg_to_rad(int(needle_orientation) % 10)
 	
 	# Input
 	speed_input = Input.get_axis("brake", "accelerate") * acceleration
 	turn_input = deg_to_rad(steering) * Input.get_axis("steer_right", "steer_left")
+	
 	# Apply movement force
+	var forward = car.transform.basis.z
 	if turn_minimum < ball.linear_velocity.length():
 		car.rotate_y(turn_input * delta)
 	if ground_ray.is_colliding():
-		var forward = car.transform.basis.z
 		ball.apply_central_force(forward * speed_input)
+		if steering == default_steering:
+			smoothing = clamp(smoothing+delta,0.0,1.0)
+			anti_slip_function(grip*smoothing) #prevent the car from slipping
+		else:
+			smoothing = 0.0
+			#var car_velocity = car.global_transform.basis.z.normalized()
+			#drift.look_at(global_transform.origin + car_velocity, Vector3.UP)
+			#drift_2.look_at(global_transform.origin + car_velocity, Vector3.UP)
 	if not ground_ray.is_colliding():
 		return
-		
+	
+	# wheels
 	front_right_wheel.rotation.y = turn_input
 	front_left_wheel.rotation.y = turn_input+deg_to_rad(180)
+	
+	var wheelRotation = -ball.linear_velocity.dot(forward) * delta
+	front_right_wheel.rotation.x += wheelRotation
+	front_left_wheel.rotation.x += wheelRotation
+	back_right_wheel.rotation.x += wheelRotation
+	back_left_wheel.rotation.x += wheelRotation
+	
+	#if OS.is_debug_build():
+		#print("Velocity: X: " + str(int(ball.linear_velocity.x)) + " | Y: " + str(int(ball.linear_velocity.y)) + " | Z: " + str(int(ball.linear_velocity.z)))
 
 func _process(_delta):
 	#honk
@@ -58,6 +94,15 @@ func _process(_delta):
 	if Input.is_action_just_pressed("drift"):
 		steering = default_steering*steer_multiplier
 		acceleration = default_acceleration*accel_multiplier
+		$Car/Mesh/drift2.emitting = true
+		$Car/Mesh/drift.emitting = true
 	if Input.is_action_just_released("drift"):
 		steering = default_steering
 		acceleration = default_acceleration
+		acceleration = default_acceleration*accel_multiplier
+		drift_2.emitting = false
+		drift.emitting = false
+
+func _ready() -> void:
+	steering = default_steering
+	acceleration = default_acceleration

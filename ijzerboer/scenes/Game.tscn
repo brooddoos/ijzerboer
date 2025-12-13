@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://1qbfol6dsaaq"]
+[gd_scene load_steps=34 format=3 uid="uid://1qbfol6dsaaq"]
 
 [ext_resource type="Script" uid="uid://clfas6djira7w" path="res://scripts/drive.gd" id="1_cpr0p"]
 [ext_resource type="Texture2D" uid="uid://by5cxbxpl1gtw" path="res://assets/images/grid.png" id="1_kiw3p"]
@@ -8,7 +8,7 @@
 [ext_resource type="Material" uid="uid://c5jnsmgq8ymji" path="res://shaders/aesthetic.tres" id="4_g4kob"]
 [ext_resource type="PackedScene" uid="uid://cknkwf45wt35w" path="res://assets/3d/tree_temp.glb" id="4_s0nni"]
 [ext_resource type="Shader" uid="uid://s60rywsqspcx" path="res://shaders/aesthetic.gdshader" id="5_3xj3m"]
-[ext_resource type="PackedScene" uid="uid://bq3i3dy8sx7qc" path="res://scenes/Cassette.tscn" id="5_s0nni"]
+[ext_resource type="PackedScene" uid="uid://bq3i3dy8sx7qc" path="res://scenes/cassette.tscn" id="5_s0nni"]
 [ext_resource type="Texture2D" uid="uid://bl3v4utw7o846" path="res://assets/cami_wheel.png" id="6_mcffj"]
 [ext_resource type="AudioStream" uid="uid://bmqugfyq7tfhe" path="res://assets/audio/honk.ogg" id="8_3xj3m"]
 [ext_resource type="Texture2D" uid="uid://bvdtxoxhkl374" path="res://assets/images/spedometer_outline.png" id="11_2rd6h"]
@@ -53,6 +53,14 @@ size = Vector3(500, 5, 500)
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3xj3m"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_78awf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2rd6h"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7ua8r"]
+material = SubResource("StandardMaterial3D_2rd6h")
+size = Vector2(0.5, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2rd6h"]
 render_priority = 0
@@ -100,7 +108,7 @@ process_material = SubResource("ParticleProcessMaterial_3xj3m")
 draw_pass_1 = SubResource("QuadMesh_mcffj")
 
 [node name="Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -8, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 transform = Transform3D(500, 0, 0, 0, 5, 0, 0, 0, 500, 0, 0, 0)
@@ -132,25 +140,45 @@ shape = SubResource("SphereShape3D_78awf")
 [node name="Mesh" parent="Van/Car" instance=ExtResource("3_s0nni")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.57, 0)
 
-[node name="Van" parent="Van/Car/Mesh" index="0"]
+[node name="drift2" type="CPUParticles3D" parent="Van/Car/Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, -0.40000004, -1.7200001)
+emitting = false
+amount = 128
+mesh = SubResource("PlaneMesh_7ua8r")
+particle_flag_align_y = true
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+
+[node name="drift" type="CPUParticles3D" parent="Van/Car/Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.40000004, -1.7200001)
+emitting = false
+amount = 128
+mesh = SubResource("PlaneMesh_7ua8r")
+particle_flag_align_y = true
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+
+[node name="Van" parent="Van/Car/Mesh" index="2"]
 surface_material_override/0 = ExtResource("4_g4kob")
 
-[node name="BackLeftWheel" parent="Van/Car/Mesh" index="1"]
+[node name="BackLeftWheel" parent="Van/Car/Mesh" index="3"]
 surface_material_override/0 = SubResource("ShaderMaterial_2rd6h")
 
-[node name="BackRightWheel" parent="Van/Car/Mesh" index="2"]
+[node name="BackRightWheel" parent="Van/Car/Mesh" index="4"]
 surface_material_override/0 = SubResource("ShaderMaterial_7ua8r")
 
-[node name="FrontLeftWheel" parent="Van/Car/Mesh" index="3"]
+[node name="FrontLeftWheel" parent="Van/Car/Mesh" index="5"]
 surface_material_override/0 = SubResource("ShaderMaterial_r7sob")
 
-[node name="FrontRightWheel" parent="Van/Car/Mesh" index="4"]
+[node name="FrontRightWheel" parent="Van/Car/Mesh" index="6"]
 surface_material_override/0 = SubResource("ShaderMaterial_y5y3l")
 
-[node name="FrontRightLight" parent="Van/Car/Mesh" index="5"]
+[node name="FrontRightLight" parent="Van/Car/Mesh" index="7"]
 surface_material_override/0 = ExtResource("4_400sg")
 
-[node name="FrontLeftLight" parent="Van/Car/Mesh" index="6"]
+[node name="FrontLeftLight" parent="Van/Car/Mesh" index="8"]
 surface_material_override/0 = ExtResource("4_400sg")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="Van/Car"]
