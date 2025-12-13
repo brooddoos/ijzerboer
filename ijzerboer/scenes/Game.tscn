@@ -8,7 +8,7 @@
 [ext_resource type="Material" uid="uid://c5jnsmgq8ymji" path="res://shaders/aesthetic.tres" id="4_g4kob"]
 [ext_resource type="PackedScene" uid="uid://cknkwf45wt35w" path="res://assets/3d/tree_temp.glb" id="4_s0nni"]
 [ext_resource type="Shader" uid="uid://s60rywsqspcx" path="res://shaders/aesthetic.gdshader" id="5_3xj3m"]
-[ext_resource type="PackedScene" uid="uid://10khovlo01ra" path="res://scenes/Cassette.tscn" id="5_s0nni"]
+[ext_resource type="PackedScene" uid="uid://bq3i3dy8sx7qc" path="res://scenes/Cassette.tscn" id="5_s0nni"]
 [ext_resource type="Texture2D" uid="uid://bl3v4utw7o846" path="res://assets/cami_wheel.png" id="6_mcffj"]
 [ext_resource type="AudioStream" uid="uid://bmqugfyq7tfhe" path="res://assets/audio/honk.ogg" id="8_3xj3m"]
 [ext_resource type="Texture2D" uid="uid://bvdtxoxhkl374" path="res://assets/images/spedometer_outline.png" id="11_2rd6h"]
@@ -110,13 +110,18 @@ mesh = SubResource("BoxMesh_cpr0p")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_78awf")
 
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("camion", "campos")]
+transform = Transform3D(-1, 4.371139e-08, -7.5710346e-08, 0, 0.8660254, 0.5, 8.742278e-08, 0.5, -0.8660254, 0, 6, -11)
+script = ExtResource("4_aug50")
+camion = NodePath("../Van/Car")
+campos = NodePath("../Van/Car/cameraPoint")
+
 [node name="Van" type="Node3D" parent="."]
 script = ExtResource("1_cpr0p")
 
 [node name="Ball" type="RigidBody3D" parent="Van"]
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_3xj3m")
-angular_damp = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Van/Ball"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
@@ -169,12 +174,6 @@ bus = &"Car"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -11)
 metadata/DO_NOT_REMOVE_ME = ""
 
-[node name="Camera3D" type="Camera3D" parent="Van" node_paths=PackedStringArray("camion", "campos")]
-transform = Transform3D(-1, 4.371139e-08, -7.5710346e-08, 0, 0.8660254, 0.5, 8.742278e-08, 0.5, -0.8660254, 0, 6, -11)
-script = ExtResource("4_aug50")
-camion = NodePath("../Car")
-campos = NodePath("../Car/cameraPoint")
-
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -221,12 +220,13 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="Assets" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.056533813, 0)
 
 [node name="tree_temp" parent="Assets" instance=ExtResource("4_s0nni")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.4280624, -4.45, 7.631594)
 
 [node name="tree_temp2" parent="Assets" instance=ExtResource("4_s0nni")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 14.042095, -3.3062696, -19.5496)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 14.042095, -4.4016037, -19.5496)
 
 [node name="tree_temp3" parent="Assets" instance=ExtResource("4_s0nni")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.8489985, -4.1745024, 43.555683)

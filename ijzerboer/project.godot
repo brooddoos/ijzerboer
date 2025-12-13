@@ -34,7 +34,6 @@ Gamestate="*res://scripts/gamestate.gd"
 window/size/viewport_width=960
 window/size/viewport_height=720
 window/stretch/mode="viewport"
-window/stretch/aspect="keep_height"
 
 [editor_plugins]
 

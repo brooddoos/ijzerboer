@@ -23,7 +23,8 @@ var acceleration:float # same here
 func _ready() -> void:
 	steering = default_steering
 	acceleration = default_acceleration
-
+	ball.linear_damp = 0 # TODO: veranderen en watanook vr physics later
+	
 func _physics_process(delta):
 	# Stick car mesh to the ball's position
 	car.global_position = ball.global_position
@@ -36,20 +37,18 @@ func _physics_process(delta):
 	speed_input = Input.get_axis("brake", "accelerate") * acceleration
 	turn_input = deg_to_rad(steering) * Input.get_axis("steer_right", "steer_left")
 	# Apply movement force
-	if turn_minimum > ball.linear_velocity.length():
-		pass
-		#nog maken!!!!
+	if turn_minimum < ball.linear_velocity.length():
+		car.rotate_y(turn_input * delta)
 	if ground_ray.is_colliding():
 		var forward = car.transform.basis.z
 		ball.apply_central_force(forward * speed_input)
 	if not ground_ray.is_colliding():
 		return
-
+		
 	front_right_wheel.rotation.y = turn_input
 	front_left_wheel.rotation.y = turn_input+deg_to_rad(180)
-	car.rotate_y(turn_input * delta)
 
-func _process(delta):
+func _process(_delta):
 	#honk
 	if Input.is_action_just_pressed("honk"):
 		$Car/AudioStreamPlayer3D.play()
