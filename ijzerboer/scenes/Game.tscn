@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://1qbfol6dsaaq"]
+[gd_scene load_steps=40 format=3 uid="uid://1qbfol6dsaaq"]
 
 [ext_resource type="Script" uid="uid://clfas6djira7w" path="res://scripts/drive.gd" id="1_cpr0p"]
 [ext_resource type="Texture2D" uid="uid://by5cxbxpl1gtw" path="res://assets/images/grid.png" id="1_kiw3p"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bq3i3dy8sx7qc" path="res://scenes/cassette.tscn" id="5_s0nni"]
 [ext_resource type="Texture2D" uid="uid://bl3v4utw7o846" path="res://assets/cami_wheel.png" id="6_mcffj"]
 [ext_resource type="AudioStream" uid="uid://bmqugfyq7tfhe" path="res://assets/audio/honk.ogg" id="8_3xj3m"]
+[ext_resource type="Script" uid="uid://cful1dia0pxja" path="res://scripts/pause.gd" id="10_r7sob"]
 [ext_resource type="Texture2D" uid="uid://bvdtxoxhkl374" path="res://assets/images/spedometer_outline.png" id="11_2rd6h"]
 [ext_resource type="Texture2D" uid="uid://cukwu6sx7ul8w" path="res://assets/images/spedometer_needle.png" id="12_7ua8r"]
 [ext_resource type="Shader" uid="uid://dw2x83lxhae1h" path="res://shaders/speed.gdshader" id="13_7ua8r"]
@@ -86,6 +87,9 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="PlaneMesh" id="PlaneMesh_7ua8r"]
 material = SubResource("StandardMaterial3D_2rd6h")
 size = Vector2(0.5, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r7sob"]
+bg_color = Color(0.66, 0.66, 0.66, 0.34117648)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_7ua8r"]
 frequency = 0.0815
@@ -232,6 +236,60 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="pause" type="Control" parent="UI"]
+process_mode = 3
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 730.0
+offset_bottom = 730.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("10_r7sob")
+
+[node name="ColorRect" type="ColorRect" parent="UI/pause"]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.62352943)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/pause/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.0
+offset_top = -91.5
+offset_right = 113.0
+offset_bottom = 91.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/pause/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="UI/pause/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.53303653, 0.5330366, 0.53303766, 1)
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_r7sob")
+text = "exit"
+
 [node name="spedometer" type="Control" parent="UI"]
 layout_mode = 1
 anchors_preset = 0
@@ -278,6 +336,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Assets" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.056533813, 0)
@@ -305,5 +364,7 @@ mesh = SubResource("CapsuleMesh_7ua8r")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("CapsuleShape3D_r7sob")
+
+[connection signal="pressed" from="UI/pause/ColorRect/VBoxContainer/Button" to="UI/pause" method="_on_button_pressed"]
 
 [editable path="Van/Car/Mesh"]
