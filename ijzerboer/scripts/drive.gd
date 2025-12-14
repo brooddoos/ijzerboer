@@ -8,6 +8,7 @@ extends Node3D
 @onready var front_left_wheel = $Car/Mesh/FrontLeftWheel
 @onready var back_left_wheel: MeshInstance3D = $Car/Mesh/BackLeftWheel
 @onready var back_right_wheel: MeshInstance3D = $Car/Mesh/BackRightWheel
+@onready var speed_lines: ColorRect = $"../UI/lineLayer/speedLines"
 
 @onready var drift_2: CPUParticles3D = $Car/Mesh/drift2
 @onready var drift: CPUParticles3D = $Car/Mesh/drift
@@ -28,15 +29,19 @@ var turn_input := 0.0
 var steering:float # added so you only need to update one variable (see settings /\)
 var acceleration:float # same here
 var smoothing:float = 1.0
-	
-func anti_slip_function(grip):
+
+func _ready() -> void:
+	steering = default_steering
+	acceleration = default_acceleration
+
+func anti_slip_function(gripf):
 	var velocity = ball.linear_velocity
 	var forward = car.global_transform.basis.z.normalized()
 
 	var forward_velocity = forward * velocity.dot(forward) #dot() berekent hvl van de snelheid vooruit is
 	var sideways_velocity = velocity - forward_velocity #wat overblijft is zijwaarts (dit willen we dus nie)
 	
-	ball.apply_central_force(-sideways_velocity * grip)
+	ball.apply_central_force(-sideways_velocity * gripf)
 	
 func _physics_process(delta):
 	# Stick car mesh to the ball's position
@@ -49,6 +54,11 @@ func _physics_process(delta):
 	needle.rotation = deg_to_rad(clamp(needle_orientation, -155, 150))
 	if needle_orientation > 150.0:
 		needle.rotation += deg_to_rad(int(needle_orientation) % 10)
+	
+	var target = clamp(float(speed-30) / 1000.0, 0.0, 0.065)
+	var current = float(speed_lines.material.get_shader_parameter("line_density"))
+	speed_lines.material.set_shader_parameter("line_density", lerp(current, target, 0.02))
+
 	
 	# Input
 	speed_input = Input.get_axis("brake", "accelerate") * acceleration
@@ -69,6 +79,8 @@ func _physics_process(delta):
 			#drift.look_at(global_transform.origin + car_velocity, Vector3.UP)
 			#drift_2.look_at(global_transform.origin + car_velocity, Vector3.UP)
 	if not ground_ray.is_colliding():
+		drift_2.emitting = false
+		drift.emitting = false
 		return
 	
 	# wheels
@@ -102,7 +114,3 @@ func _process(_delta):
 		acceleration = default_acceleration*accel_multiplier
 		drift_2.emitting = false
 		drift.emitting = false
-
-func _ready() -> void:
-	steering = default_steering
-	acceleration = default_acceleration
