@@ -2,7 +2,7 @@ extends Control
 @onready var settings: PanelContainer = $Settings
 @onready var _3_dsplashtext: Label3D = $"../../Logo/3dsplashtext"
 @onready var buttons: PanelContainer = $Buttons
-
+@export var scene:PackedScene
 const splashTexts = [ #voeg later mss meer toe, idk
 	"Man, man, man, miserie, miserie, miserie!",
 	"Hier zijn geen ijzertekorten te bespeuren!",
@@ -17,8 +17,7 @@ func _ready() -> void:
 
 func _on_play_pressed() -> void:
 	##Transition.changescene()
-	var newscene := load("res://scenes/Game.tscn")
-	get_tree().change_scene_to_packed(newscene)
+	get_tree().change_scene_to_packed(scene)
 func _on_options_pressed() -> void:
 	buttons.visible = !buttons.visible
 	settings.visible = !settings.visible

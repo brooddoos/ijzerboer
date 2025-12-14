@@ -1,7 +1,8 @@
-[gd_scene load_steps=30 format=4 uid="uid://duqanjqofiqy2"]
+[gd_scene load_steps=31 format=4 uid="uid://duqanjqofiqy2"]
 
 [ext_resource type="Script" uid="uid://mqf81qrmeos" path="res://scripts/menu.gd" id="1_5mbse"]
 [ext_resource type="Script" uid="uid://h2ubv3t7qsjy" path="res://scripts/menucam.gd" id="2_dfy5j"]
+[ext_resource type="PackedScene" uid="uid://1qbfol6dsaaq" path="res://scenes/Game.tscn" id="2_el213"]
 [ext_resource type="Theme" uid="uid://5nsxtmf0cw8u" path="res://scenes/Menu.tres" id="2_yt8fu"]
 [ext_resource type="PackedScene" uid="uid://cknkwf45wt35w" path="res://assets/3d/tree_temp.glb" id="3_3vvtq"]
 [ext_resource type="Texture2D" uid="uid://bwsftepgrv6oe" path="res://assets/images/logotemporary.png" id="4_3vvtq"]
@@ -183,6 +184,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_5mbse")
+scene = ExtResource("2_el213")
 
 [node name="Buttons" type="PanelContainer" parent="ui/Control"]
 layout_mode = 1

@@ -1,10 +1,9 @@
-[gd_scene load_steps=34 format=4 uid="uid://bq3i3dy8sx7qc"]
+[gd_scene load_steps=33 format=4 uid="uid://bq3i3dy8sx7qc"]
 
 [ext_resource type="Script" uid="uid://cj2tmqcbv7qk2" path="res://scripts/cassette.gd" id="1_68kt0"]
 [ext_resource type="Texture2D" uid="uid://ctav3jkfeasug" path="res://assets/3d/cassettelowpoly_Behuizing.png" id="2_68kt0"]
 [ext_resource type="FontFile" uid="uid://d0vhpjp132hd8" path="res://assets/fonts/TrashHand.TTF" id="4_0j804"]
 [ext_resource type="Texture2D" uid="uid://cj6usxakrsfli" path="res://assets/images/label4.png" id="4_oirex"]
-[ext_resource type="AudioStream" uid="uid://ctjlksko4p480" path="res://assets/audio/jungle.ogg" id="5_68kt0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dyp6u"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -509,7 +508,7 @@ _data = {
 &"cassette_animation": SubResource("Animation_68kt0")
 }
 
-[node name="Control" type="Control"]
+[node name="Cassette" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -639,5 +638,7 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_68kt0")
-autoplay = true
+bus = &"BGM"
+playback_type = 1
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

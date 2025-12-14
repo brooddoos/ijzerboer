@@ -7,8 +7,9 @@ extends Control
 @onready var cassette_up := false
 @export var tapes:Dictionary = {
 	1: { "title": "Jungle Mixtape\nVOLUME 1", "file":"res://assets/audio/jungle.ogg"},
-	#2: { "title": "Asleep and Dreaming\nBy: Arcologies ", "file":"res://assets/audio/asleepanddreaming.mp3"},
-	2: { "title": "Mega Dance Mix", "file":"res://assets/audio/megadance.ogg"},
+	2: { "title": "Asleep and Dreaming\nBy: Arcologies ", "file":"res://assets/audio/asleepanddreaming.mp3"},
+	3: { "title": "Mega Dance Mix", "file":"res://assets/audio/megadance.ogg"},
+	4: { "title": "honk 3s version\n(to test autoplay)", "file":"res://assets/audio/honk.ogg"},
 	
 }
 @export var current_tape = 1
@@ -27,31 +28,44 @@ func _ready() -> void:
 	cassette.position.y = cassette_start_pos - 0.05
 	cassette_up = false
 	audio.stream = load(tapes[current_tape]["file"])
-	audio.play()
+	audio.play(0)
 	animation_player.play("cassette_animation")
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("info"):
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("info"):
 		cassette_up = not cassette_up
 		if cassette_up:
 			allTween(Tween.TRANS_EXPO,cassette,"position:y",cassette_start_pos - 0.01 ,0.25)
 		else:
 			allTween(Tween.TRANS_EXPO,cassette,"position:y",cassette_start_pos - 0.05,0.25)
 
-	if Input.is_action_just_pressed("cassette") or not audio.playing:
-		if current_tape != len(tapes):
-			current_tape += 1
-		else:
-			current_tape = 1
-		
+	if Input.is_action_pressed("cassette"):
+		current_tape = (current_tape % len(tapes)) + 1
+
 		allTween(Tween.TRANS_EXPO,cassette,"position:y",cassette_start_pos - 0.1,0.25)
 		await tween.finished
 		title.text = tapes[current_tape]["title"]
 		if !title.text.contains("\n"):
 			title.text = title.text + "\n "
+			
 		allTween(Tween.TRANS_EXPO,cassette,"position:y",cassette_start_pos - 0.05,0.25)
 		cassette_up = false
+		audio.stop()
 		audio.stream = load(tapes[current_tape]["file"])
-		audio.play()
+		audio.play(0)
+
+
+func _on_audio_stream_player_finished() -> void:
+	current_tape = (current_tape % len(tapes)) + 1
+
+	allTween(Tween.TRANS_EXPO,cassette,"position:y",cassette_start_pos - 0.1,0.25)
+	await tween.finished
+	title.text = tapes[current_tape]["title"]
+	if !title.text.contains("\n"):
+		title.text = title.text + "\n "
 		
-		
+	allTween(Tween.TRANS_EXPO,cassette,"position:y",cassette_start_pos - 0.05,0.25)
+	cassette_up = false
+	audio.stop()
+	audio.stream = load(tapes[current_tape]["file"])
+	audio.play(0)
