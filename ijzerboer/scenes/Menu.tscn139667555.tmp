@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://h2ubv3t7qsjy" path="res://scripts/menucam.gd" id="2_dfy5j"]
 [ext_resource type="PackedScene" uid="uid://1qbfol6dsaaq" path="res://scenes/Game.tscn" id="2_el213"]
 [ext_resource type="Theme" uid="uid://5nsxtmf0cw8u" path="res://assets/Menu.tres" id="2_yt8fu"]
-[ext_resource type="PackedScene" uid="uid://c4ec6r74ng1hj" path="res://scenes/tree_simple.tscn" id="5_7ycwl"]
+[ext_resource type="PackedScene" uid="uid://cknkwf45wt35w" path="res://assets/3d/tree_temp.glb" id="3_3vvtq"]
 [ext_resource type="Script" uid="uid://cpny8b1ylg8y5" path="res://scripts/car.gd" id="6_7yvfd"]
 [ext_resource type="Texture2D" uid="uid://dcfej0covuq8y" path="res://assets/images/logo.png" id="6_thu7x"]
 [ext_resource type="Material" uid="uid://c5jnsmgq8ymji" path="res://shaders/aesthetic.tres" id="8_1abgu"]
@@ -325,63 +325,63 @@ skeleton = NodePath("")
 
 [node name="Trees" type="Node" parent="."]
 
-[node name="tree_simple" parent="Trees" instance=ExtResource("5_7ycwl")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -36.421, -0.264709, -18.262314)
+[node name="tree_temp" parent="Trees" instance=ExtResource("3_3vvtq")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -35.749996, 0.35534048, -18.262314)
 
-[node name="tree_simple2" parent="Trees" instance=ExtResource("5_7ycwl")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -28.659405, -0.894609, -18.262314)
+[node name="tree_temp2" parent="Trees" instance=ExtResource("3_3vvtq")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -20.903841, -0.24103785, -18.262312)
 
-[node name="tree_simple3" parent="Trees" instance=ExtResource("5_7ycwl")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -20.867926, -1.1303253, -18.262312)
+[node name="tree_temp3" parent="Trees" instance=ExtResource("3_3vvtq")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -29.586042, -0.7570014, -18.262308)
 
-[node name="tree_simple4" parent="Trees" instance=ExtResource("5_7ycwl")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -16.537062, -2.614531, -18.26231)
+[node name="tree_temp4" parent="Trees" instance=ExtResource("3_3vvtq")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -14.205837, -2.4506888, -18.262306)
 
-[node name="tree_simple5" parent="Trees" instance=ExtResource("5_7ycwl")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -32.32728, -5.240683, -18.26231)
+[node name="tree_temp5" parent="Trees" instance=ExtResource("3_3vvtq")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -25.272678, -5.768126, -18.262308)
 
-[node name="tree_simple6" parent="Trees" instance=ExtResource("5_7ycwl")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -24.843372, -3.0345082, -18.26231)
+[node name="tree_temp6" parent="Trees" instance=ExtResource("3_3vvtq")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -18.106716, -3.772015, -18.262308)
 
-[node name="tree_simple7" parent="Trees" instance=ExtResource("5_7ycwl")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -11.707582, -0.5160532, -18.262312)
+[node name="tree_temp7" parent="Trees" instance=ExtResource("3_3vvtq")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -32.724396, -1.9614549, -18.262308)
 
-[node name="tree_simple8" parent="Trees" instance=ExtResource("5_7ycwl")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -7.0056195, -3.918457, -18.262312)
+[node name="tree_temp8" parent="Trees" instance=ExtResource("3_3vvtq")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -2.2271538, -1.1920857, -18.262308)
 
-[node name="tree_simple9" parent="Trees" instance=ExtResource("5_7ycwl")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -2.7770944, -1.7382708, -18.262312)
+[node name="tree_temp9" parent="Trees" instance=ExtResource("3_3vvtq")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -8.620092, -3.0125937, -18.262308)
 
-[node name="tree_simple10" parent="Trees" instance=ExtResource("5_7ycwl")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.71539783, -2.678238, -18.262312)
+[node name="tree_temp10" parent="Trees" instance=ExtResource("3_3vvtq")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -5.5077667, -5.527017, -18.262308)
 
-[node name="tree_simple11" parent="Trees" instance=ExtResource("5_7ycwl")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 5.5909424, -3.990203, -18.262312)
+[node name="tree_temp11" parent="Trees" instance=ExtResource("3_3vvtq")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 2.8522701, -1.1293855, -18.26231)
 
-[node name="tree_simple12" parent="Trees" instance=ExtResource("5_7ycwl")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 10.145622, -2.4092255, -18.262312)
+[node name="tree_temp12" parent="Trees" instance=ExtResource("3_3vvtq")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 7.4074135, -4.371206, -18.26231)
 
-[node name="tree_simple13" parent="Trees" instance=ExtResource("5_7ycwl")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 14.24937, 0.13743877, -18.262312)
+[node name="tree_temp13" parent="Trees" instance=ExtResource("3_3vvtq")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 14.357957, -3.7926745, -18.26231)
 
-[node name="tree_simple14" parent="Trees" instance=ExtResource("5_7ycwl")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -3.611, -4.6550827, -2.642)
+[node name="tree_temp14" parent="Trees" instance=ExtResource("3_3vvtq")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -3.6111479, -4.1265683, -2.6423779)
 
-[node name="tree_simple15" parent="Trees" instance=ExtResource("5_7ycwl")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -13.163, -4.3460827, -2.642)
+[node name="tree_temp15" parent="Trees" instance=ExtResource("3_3vvtq")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -13.163408, -3.8182168, -2.6423779)
 
 [node name="Wall" type="CSGBox3D" parent="."]
 transform = Transform3D(149.71939, 0, 0, 0, 1.7977414, 0, 0, 0, 1, 0, 6.955824, -41.283447)
 size = Vector3(1, 7.692993, 1)
 
 [node name="Logo" type="Sprite3D" parent="."]
-transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, -8.090498, 8.353242, -15.785511)
-pixel_size = 0.0032
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, -8.090498, 6.840866, -15.785511)
+pixel_size = 0.003
 texture = ExtResource("6_thu7x")
 
 [node name="3dsplashtext" type="Label3D" parent="Logo"]
-transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, -1.9807835, 0)
-text = "Er passen hier achtenveertig karakters per lijn."
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, -1.1764708, 0)
+text = "splashtextsplashtext"
 font_size = 100
 outline_size = 0
 
@@ -398,25 +398,25 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -47.
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 34, 1.039, -13)
 
 [node name="Van" type="Node3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -25.236752, 1.039, -8.258)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -37.3, 1.039, -8.258)
 script = ExtResource("6_7yvfd")
 
-[node name="cami" parent="Van" instance=ExtResource("8_yt8fu")]
+[node name="cami2" parent="Van" instance=ExtResource("8_yt8fu")]
 
-[node name="Van" parent="Van/cami" index="0"]
+[node name="Van" parent="Van/cami2" index="0"]
 surface_material_override/0 = ExtResource("8_1abgu")
 
-[node name="BackLeftWheel" parent="Van/cami" index="1"]
+[node name="BackLeftWheel" parent="Van/cami2" index="1"]
 material_override = SubResource("ShaderMaterial_el213")
 mesh = SubResource("ArrayMesh_el213")
 
-[node name="BackRightWheel" parent="Van/cami" index="2"]
+[node name="BackRightWheel" parent="Van/cami2" index="2"]
 material_override = SubResource("ShaderMaterial_thu7x")
 
-[node name="FrontLeftWheel" parent="Van/cami" index="3"]
+[node name="FrontLeftWheel" parent="Van/cami2" index="3"]
 material_override = SubResource("ShaderMaterial_2af52")
 
-[node name="FrontRightWheel" parent="Van/cami" index="4"]
+[node name="FrontRightWheel" parent="Van/cami2" index="4"]
 material_override = SubResource("ShaderMaterial_7ycwl")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Van"]
@@ -439,4 +439,4 @@ draw_pass_1 = ExtResource("13_thu7x")
 [connection signal="pressed" from="ui/Control/Buttons/MarginContainer/HBoxContainer/Exit" to="ui/Control" method="_on_exit_pressed"]
 [connection signal="pressed" from="ui/Control/Settings/MarginContainer/HBoxContainer/VBoxContainer/options" to="ui/Control" method="_on_options_pressed"]
 
-[editable path="Van/cami"]
+[editable path="Van/cami2"]

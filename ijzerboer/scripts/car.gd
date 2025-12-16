@@ -21,11 +21,17 @@ func randint(minimu:int, maximu:int) -> int: #im used to python :P
 	return rng.randi_range(minimu, maximu)
 
 func _ready() -> void:
-	car.position = startpoint_1.position
-	car.rotation = startpoint_2.rotation
-	destination = endpoint_1.position
+	if speed != 0:
+		car.position = startpoint_1.position
+		car.rotation = startpoint_2.rotation
+		destination = endpoint_1.position
+	else:
+		$AudioStreamPlayer3D.stop()
 
 func _process(delta: float) -> void:
+	if speed == 0:
+		return
+		
 	counter += 1
 	var direction = (destination - car.position)
 	if (direction.length() < 0.1 or direction.length() > 100) and arrivedCount + offset <= counter: #ge zijt aangekomen maat

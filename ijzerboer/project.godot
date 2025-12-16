@@ -20,8 +20,8 @@ run/main_scene="uid://t1al5hykieb"
 config/features=PackedStringArray("4.5", "Mobile")
 boot_splash/bg_color=Color(0.08627451, 0.08627451, 0.10980392, 1)
 boot_splash/fullsize=false
-boot_splash/image="uid://b2l0lf7xmfe17"
-config/icon="res://icon.svg"
+boot_splash/image="uid://c66qp8utrtyjo"
+config/icon="uid://bmw58ybkyyi8b"
 boot_splash/minimum_display_time=1000
 
 [autoload]
