@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://1qbfol6dsaaq"]
+[gd_scene load_steps=44 format=3 uid="uid://1qbfol6dsaaq"]
 
 [ext_resource type="Script" uid="uid://clfas6djira7w" path="res://scripts/drive.gd" id="1_cpr0p"]
 [ext_resource type="Texture2D" uid="uid://by5cxbxpl1gtw" path="res://assets/images/grid.png" id="1_kiw3p"]
@@ -8,13 +8,15 @@
 [ext_resource type="Material" uid="uid://c5jnsmgq8ymji" path="res://shaders/aesthetic.tres" id="4_g4kob"]
 [ext_resource type="PackedScene" uid="uid://cknkwf45wt35w" path="res://assets/3d/tree_temp.glb" id="4_s0nni"]
 [ext_resource type="Shader" uid="uid://s60rywsqspcx" path="res://shaders/aesthetic.gdshader" id="5_3xj3m"]
-[ext_resource type="PackedScene" uid="uid://bq3i3dy8sx7qc" path="res://scenes/cassette.tscn" id="5_s0nni"]
+[ext_resource type="PackedScene" uid="uid://bq3i3dy8sx7qc" path="res://scenes/Cassette.tscn" id="5_s0nni"]
 [ext_resource type="Texture2D" uid="uid://bl3v4utw7o846" path="res://assets/cami_wheel.png" id="6_mcffj"]
 [ext_resource type="AudioStream" uid="uid://bmqugfyq7tfhe" path="res://assets/audio/honk.ogg" id="8_3xj3m"]
 [ext_resource type="Script" uid="uid://cful1dia0pxja" path="res://scripts/pause.gd" id="10_r7sob"]
 [ext_resource type="Texture2D" uid="uid://bvdtxoxhkl374" path="res://assets/images/spedometer_outline.png" id="11_2rd6h"]
 [ext_resource type="Texture2D" uid="uid://cukwu6sx7ul8w" path="res://assets/images/spedometer_needle.png" id="12_7ua8r"]
 [ext_resource type="Shader" uid="uid://dw2x83lxhae1h" path="res://shaders/speed.gdshader" id="13_7ua8r"]
+[ext_resource type="Script" uid="uid://s7q8cvdiv6w3" path="res://scenes/dirk.gd" id="16_vjgi4"]
+[ext_resource type="Script" uid="uid://6abxpudceh44" path="res://scenes/area_3d.gd" id="17_kyk2p"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s0nni"]
 sky_top_color = Color(0.45990002, 0.56794, 0.73, 1)
@@ -29,16 +31,34 @@ sky_material = SubResource("ProceduralSkyMaterial_s0nni")
 background_mode = 2
 sky = SubResource("Sky_aug50")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3xj3m"]
-emission_shape_scale = Vector3(100, 10, 100)
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r7sob"]
+emission_shape_offset = Vector3(0, 15, 0)
 emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
+emission_box_extents = Vector3(100, 1, 100)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 6.0
+radial_velocity_min = -4.0000224
+radial_velocity_max = 3.9999776
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3xj3m"]
+[sub_resource type="Gradient" id="Gradient_r7sob"]
+colors = PackedColorArray(1, 1, 1, 1, 0.41215247, 0.41215247, 0.41215247, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y5y3l"]
+gradient = SubResource("Gradient_r7sob")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y5y3l"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_y5y3l")
 billboard_mode = 1
+billboard_keep_scale = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_mcffj"]
-material = SubResource("StandardMaterial3D_3xj3m")
+material = SubResource("StandardMaterial3D_y5y3l")
 size = Vector2(0.2, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kiw3p"]
@@ -124,11 +144,11 @@ environment = SubResource("Environment_aug50")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 18.369925, 0)
 
 [node name="Snow" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.0929794, 0)
-emitting = false
-amount = 150
-lifetime = 1.21
-process_material = SubResource("ParticleProcessMaterial_3xj3m")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0929794, 0)
+amount = 500
+lifetime = 2.0
+visibility_aabb = AABB(-50, -5, -50, 100, 10, 100)
+process_material = SubResource("ParticleProcessMaterial_r7sob")
 draw_pass_1 = SubResource("QuadMesh_mcffj")
 
 [node name="Floor" type="StaticBody3D" parent="."]
@@ -350,19 +370,22 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 14.042095, -4.4016037, -19.54
 [node name="tree_temp3" parent="Assets" instance=ExtResource("4_s0nni")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.8489985, -4.1745024, 43.555683)
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+[node name="Dirk" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -3, 0)
+script = ExtResource("16_vjgi4")
 
-[node name="Area3D" type="Area3D" parent="RigidBody3D"]
+[node name="Area3D" type="Area3D" parent="Dirk"]
+script = ExtResource("17_kyk2p")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dirk/Area3D"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 shape = SubResource("CylinderShape3D_2rd6h")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Dirk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_7ua8r")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dirk"]
 shape = SubResource("CapsuleShape3D_r7sob")
 
 [connection signal="pressed" from="UI/pause/ColorRect/VBoxContainer/Button" to="UI/pause" method="_on_button_pressed"]

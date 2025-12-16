@@ -26,7 +26,6 @@ boot_splash/minimum_display_time=1000
 
 [autoload]
 
-Transition="*res://scenes/Transition.tscn"
 Gamestate="*res://scripts/gamestate.gd"
 Manager="*res://scripts/manager.gd"
 

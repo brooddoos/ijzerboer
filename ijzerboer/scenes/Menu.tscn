@@ -1,9 +1,9 @@
-[gd_scene load_steps=31 format=4 uid="uid://duqanjqofiqy2"]
+[gd_scene load_steps=33 format=4 uid="uid://duqanjqofiqy2"]
 
 [ext_resource type="Script" uid="uid://mqf81qrmeos" path="res://scripts/menu.gd" id="1_5mbse"]
 [ext_resource type="Script" uid="uid://h2ubv3t7qsjy" path="res://scripts/menucam.gd" id="2_dfy5j"]
 [ext_resource type="PackedScene" uid="uid://1qbfol6dsaaq" path="res://scenes/Game.tscn" id="2_el213"]
-[ext_resource type="Theme" uid="uid://5nsxtmf0cw8u" path="res://scenes/Menu.tres" id="2_yt8fu"]
+[ext_resource type="Theme" uid="uid://5nsxtmf0cw8u" path="res://assets/Menu.tres" id="2_yt8fu"]
 [ext_resource type="PackedScene" uid="uid://cknkwf45wt35w" path="res://assets/3d/tree_temp.glb" id="3_3vvtq"]
 [ext_resource type="Texture2D" uid="uid://bwsftepgrv6oe" path="res://assets/images/logotemporary.png" id="4_3vvtq"]
 [ext_resource type="Script" uid="uid://cpny8b1ylg8y5" path="res://scripts/car.gd" id="6_7yvfd"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bl3v4utw7o846" path="res://assets/cami_wheel.png" id="9_4umqm"]
 [ext_resource type="Shader" uid="uid://s60rywsqspcx" path="res://shaders/aesthetic.gdshader" id="9_pp5m5"]
 [ext_resource type="AudioStream" uid="uid://dum3r7il36506" path="res://assets/audio/oudijzer.ogg" id="10_pp5m5"]
+[ext_resource type="QuadMesh" uid="uid://d0a3wmmibg0ii" path="res://assets/SnowDrawPass.tres" id="13_thu7x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yt8fu"]
 bg_color = Color(0, 0, 0, 0.4)
@@ -61,7 +62,6 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5g8n"]
-albedo_color = Color(0.59, 0.51919997, 0.354, 1)
 
 [sub_resource type="Gradient" id="Gradient_1abgu"]
 
@@ -169,6 +169,16 @@ render_priority = 0
 shader = ExtResource("9_pp5m5")
 shader_parameter/scale = 0.1
 shader_parameter/albedo_texture = ExtResource("9_4umqm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_el213"]
+emission_shape_offset = Vector3(0, 15, 0)
+emission_shape = 3
+emission_box_extents = Vector3(50, 1, 50)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 6.0
+radial_velocity_min = -4.0000224
+radial_velocity_max = 3.9999776
 
 [node name="Node3D" type="Node3D"]
 
@@ -414,6 +424,14 @@ autoplay = true
 max_distance = 50.0
 doppler_tracking = 1
 parameters/looping = true
+
+[node name="Snow" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0929794, 0)
+amount = 250
+lifetime = 2.0
+visibility_aabb = AABB(-50, -5, -50, 100, 10, 100)
+process_material = SubResource("ParticleProcessMaterial_el213")
+draw_pass_1 = ExtResource("13_thu7x")
 
 [connection signal="pressed" from="ui/Control/Buttons/MarginContainer/HBoxContainer/Play" to="ui/Control" method="_on_play_pressed"]
 [connection signal="pressed" from="ui/Control/Buttons/MarginContainer/HBoxContainer/Options" to="ui/Control" method="_on_options_pressed"]
