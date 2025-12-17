@@ -58,7 +58,6 @@ func _physics_process(delta):
 	var target = clamp(float(speed-30) / 1000.0, 0.0, 0.065)
 	var current = float(speed_lines.material.get_shader_parameter("line_density"))
 	speed_lines.material.set_shader_parameter("line_density", lerp(current, target, 0.02))
-
 	
 	# Input
 	speed_input = Input.get_axis("brake", "accelerate") * acceleration
@@ -75,6 +74,7 @@ func _physics_process(delta):
 			anti_slip_function(grip*smoothing) #prevent the car from slipping
 		else:
 			smoothing = 0.0
+			anti_slip_function(grip/20)
 			#var car_velocity = car.global_transform.basis.z.normalized()
 			#drift.look_at(global_transform.origin + car_velocity, Vector3.UP)
 			#drift_2.look_at(global_transform.origin + car_velocity, Vector3.UP)

@@ -9,12 +9,31 @@ extends Control
 	1: { "title": "Jungle Mixtape\nVOLUME 1", "file":"res://assets/audio/jungle.ogg"},
 	2: { "title": "Asleep and Dreaming\nBy: Arcologies ", "file":"res://assets/audio/asleepanddreaming.mp3"},
 	3: { "title": "Mega Dance Mix", "file":"res://assets/audio/megadance.ogg"},
-	4: { "title": "honk 3s version\n(to test autoplay)", "file":"res://assets/audio/honk.ogg"},
-	
 }
 @export var current_tape = 1
 
 var tween #zoda je kn wachten indien nodig
+
+func load_music(path:String):
+	var steam:AudioStream = null
+	if path.begins_with("res://"):
+		audio.stream = load(path)
+		return
+	else: #is a user music 
+		if path.ends_with("mp3"):
+			var mp3 = AudioStreamMP3.load_from_file(path)
+			#var file = FileAccess.open(path, FileAccess.READ)
+			#mp3.data = file.get_buffer(file.get_length())
+			audio.stream = mp3
+		elif path.ends_with(".ogg"):
+			var ogg = AudioStreamOggVorbis.load_from_file(path)
+			audio.stream = ogg
+		elif path.ends_with(".wav"):
+			var wav = AudioStreamWAV.load_from_file(path)
+			audio.stream = wav
+		else:
+			push_error("not supported(only ogg, mp3 and wav pls): " + path)
+			return
 
 func allTween(transistionType:Tween.TransitionType,object,property:String,vars,time:float): #zoda we nie 10x dezelfde functie opnieuw moete schrijven
 	tween = get_tree().create_tween()
@@ -27,7 +46,7 @@ func _ready() -> void:
 		title.text = title.text + "\n "
 	cassette.position.y = cassette_start_pos - 0.05
 	cassette_up = false
-	audio.stream = load(tapes[current_tape]["file"])
+	load_music(tapes[current_tape]["file"])
 	audio.play(0)
 	animation_player.play("cassette_animation")
 
@@ -39,7 +58,7 @@ func _input(event: InputEvent) -> void:
 		else:
 			allTween(Tween.TRANS_EXPO,cassette,"position:y",cassette_start_pos - 0.05,0.25)
 
-	if Input.is_action_pressed("cassette"):
+	if event.is_action_pressed("cassette"):
 		current_tape = (current_tape % len(tapes)) + 1
 
 		allTween(Tween.TRANS_EXPO,cassette,"position:y",cassette_start_pos - 0.1,0.25)
@@ -51,7 +70,7 @@ func _input(event: InputEvent) -> void:
 		allTween(Tween.TRANS_EXPO,cassette,"position:y",cassette_start_pos - 0.05,0.25)
 		cassette_up = false
 		audio.stop()
-		audio.stream = load(tapes[current_tape]["file"])
+		load_music(tapes[current_tape]["file"])
 		audio.play(0)
 
 
@@ -67,5 +86,5 @@ func _on_audio_stream_player_finished() -> void:
 	allTween(Tween.TRANS_EXPO,cassette,"position:y",cassette_start_pos - 0.05,0.25)
 	cassette_up = false
 	audio.stop()
-	audio.stream = load(tapes[current_tape]["file"])
+	load_music(tapes[current_tape]["file"])
 	audio.play(0)
