@@ -9,6 +9,8 @@ extends Node3D
 @onready var back_left_wheel: MeshInstance3D = $Car/Mesh/BackLeftWheel
 @onready var back_right_wheel: MeshInstance3D = $Car/Mesh/BackRightWheel
 @onready var speed_lines: ColorRect = $"../UI/lineLayer/speedLines"
+@onready var van: MeshInstance3D = $Car/Mesh/Van
+
 
 @onready var drift_2: CPUParticles3D = $Car/Mesh/drift2
 @onready var drift: CPUParticles3D = $Car/Mesh/drift
@@ -65,6 +67,14 @@ func _physics_process(delta):
 	
 	# Apply movement force
 	var forward = car.transform.basis.z
+	if turn_input != 0:
+		van.rotation.z = clamp(
+			van.rotation.z + turn_input * -0.05,
+			deg_to_rad(-5),
+			deg_to_rad(5)
+		)
+	else:
+		van.rotation.z = lerp(van.rotation.z, 0.0, 0.1)
 	if turn_minimum < ball.linear_velocity.length():
 		car.rotate_y(turn_input * delta)
 	if ground_ray.is_colliding():

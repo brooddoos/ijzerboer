@@ -92,3 +92,14 @@ func _on_clear_pressed() -> void:
 		show_info("Successfully cleared all custom songs.", "Cleared")
 	else:
 		show_info("You gotta add some songs before clearing 'em.", "No songs")
+
+
+func _on_resume_pressed() -> void:
+	allTween(Tween.TRANS_EXPO,$".","position:y",730,0.25)
+	await tween.finished
+	inTransition = false
+	tween.kill()
+	
+	paused = false
+	get_tree().paused = false
+	hide()
