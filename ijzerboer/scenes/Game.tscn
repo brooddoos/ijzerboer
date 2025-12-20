@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://1qbfol6dsaaq"]
+[gd_scene load_steps=43 format=3 uid="uid://1qbfol6dsaaq"]
 
 [ext_resource type="Script" uid="uid://clfas6djira7w" path="res://scripts/drive.gd" id="1_cpr0p"]
 [ext_resource type="Texture2D" uid="uid://by5cxbxpl1gtw" path="res://assets/images/grid.png" id="1_kiw3p"]
@@ -8,15 +8,15 @@
 [ext_resource type="Material" uid="uid://c5jnsmgq8ymji" path="res://shaders/aesthetic.tres" id="4_g4kob"]
 [ext_resource type="PackedScene" uid="uid://cknkwf45wt35w" path="res://assets/3d/tree_temp.glb" id="4_s0nni"]
 [ext_resource type="Shader" uid="uid://s60rywsqspcx" path="res://shaders/aesthetic.gdshader" id="5_3xj3m"]
-[ext_resource type="PackedScene" uid="uid://bq3i3dy8sx7qc" path="res://scenes/cassette.tscn" id="5_s0nni"]
+[ext_resource type="PackedScene" uid="uid://bq3i3dy8sx7qc" path="res://scenes/Cassette.tscn" id="5_s0nni"]
 [ext_resource type="Texture2D" uid="uid://bl3v4utw7o846" path="res://assets/cami_wheel.png" id="6_mcffj"]
 [ext_resource type="AudioStream" uid="uid://bmqugfyq7tfhe" path="res://assets/audio/honk.ogg" id="8_3xj3m"]
 [ext_resource type="Script" uid="uid://cful1dia0pxja" path="res://scripts/pause.gd" id="10_r7sob"]
 [ext_resource type="Texture2D" uid="uid://bvdtxoxhkl374" path="res://assets/images/spedometer_outline.png" id="11_2rd6h"]
 [ext_resource type="Texture2D" uid="uid://cukwu6sx7ul8w" path="res://assets/images/spedometer_needle.png" id="12_7ua8r"]
 [ext_resource type="Shader" uid="uid://dw2x83lxhae1h" path="res://shaders/speed.gdshader" id="13_7ua8r"]
-[ext_resource type="Script" uid="uid://s7q8cvdiv6w3" path="res://scenes/dirk.gd" id="16_vjgi4"]
-[ext_resource type="Script" uid="uid://6abxpudceh44" path="res://scenes/area_3d.gd" id="17_kyk2p"]
+[ext_resource type="Script" uid="uid://s7q8cvdiv6w3" path="res://scripts/dirk.gd" id="16_vjgi4"]
+[ext_resource type="Script" uid="uid://duye04gka0uvq" path="res://scripts/spawn.gd" id="18_kyk2p"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s0nni"]
 sky_top_color = Color(0.45990002, 0.56794, 0.73, 1)
@@ -129,13 +129,20 @@ shader_parameter/mask_size = 0.3210000152475
 shader_parameter/mask_edge = 0.3600000171
 shader_parameter/animation_speed = 20.0
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_2rd6h"]
-
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7ua8r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r7sob"]
 
 [node name="Game" type="Node3D"]
+
+[node name="SpawnLocations" type="Node3D" parent="."]
+script = ExtResource("18_kyk2p")
+
+[node name="SpawnLocation1" type="Marker3D" parent="SpawnLocations"]
+transform = Transform3D(0.5269327, -0.81770504, 0.23173359, 0.746572, 0.5756308, 0.33358547, -0.40616754, -0.002771257, 0.9137945, -57.886, -0.889, 0)
+
+[node name="SpawnLocation2" type="Marker3D" parent="SpawnLocations"]
+transform = Transform3D(0.8023802, -0.5968132, 0, 0.5968132, 0.8023802, 0, 0, 0, 1, -37.357254, -0.9900398, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_aug50")
@@ -403,15 +410,8 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 14.042095, -4.4016037, -19.54
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.8489985, -4.1745024, 43.555683)
 
 [node name="Dirk" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.532063, -3, 0)
 script = ExtResource("16_vjgi4")
-
-[node name="Area3D" type="Area3D" parent="Dirk"]
-script = ExtResource("17_kyk2p")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dirk/Area3D"]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
-shape = SubResource("CylinderShape3D_2rd6h")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Dirk"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
