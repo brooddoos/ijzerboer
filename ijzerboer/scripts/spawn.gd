@@ -1,5 +1,5 @@
 extends Node3D
-var iron = load("res://scenes/Iron.tscn")
+var iron_scene = load("res://scenes/Iron.tscn")
 func spawn_iron():
 	#Get random spawn location
 	var spawnlocations = get_children()
@@ -9,9 +9,9 @@ func spawn_iron():
 			spawnlocations.erase(spawn)
 			
 	var spawnlocation = spawnlocations.pick_random()
-	iron = iron.instantiate()
-	spawnlocation.add_child(iron) 
-	iron.global_transform = spawnlocation.global_transform
+	var iron_instance = iron_scene.instantiate()
+	spawnlocation.add_child(iron_instance) 
+	iron_instance.global_transform = spawnlocation.global_transform
 	print("iron spawned")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
