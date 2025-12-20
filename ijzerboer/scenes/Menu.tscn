@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://duqanjqofiqy2"]
+[gd_scene load_steps=23 format=4 uid="uid://duqanjqofiqy2"]
 
 [ext_resource type="Script" uid="uid://mqf81qrmeos" path="res://scripts/menu.gd" id="1_5mbse"]
 [ext_resource type="Script" uid="uid://h2ubv3t7qsjy" path="res://scripts/menucam.gd" id="2_dfy5j"]
@@ -7,10 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c4ec6r74ng1hj" path="res://scenes/tree_simple.tscn" id="5_7ycwl"]
 [ext_resource type="Script" uid="uid://cpny8b1ylg8y5" path="res://scripts/car.gd" id="6_7yvfd"]
 [ext_resource type="Texture2D" uid="uid://dcfej0covuq8y" path="res://assets/images/logo.png" id="6_thu7x"]
-[ext_resource type="Material" uid="uid://c5jnsmgq8ymji" path="res://shaders/aesthetic.tres" id="8_1abgu"]
-[ext_resource type="PackedScene" uid="uid://ymbmajn3a8ya" path="res://scenes/cami.tscn" id="8_yt8fu"]
-[ext_resource type="Texture2D" uid="uid://bl3v4utw7o846" path="res://assets/cami_wheel.png" id="9_4umqm"]
-[ext_resource type="Shader" uid="uid://s60rywsqspcx" path="res://shaders/aesthetic.gdshader" id="9_pp5m5"]
+[ext_resource type="PackedScene" uid="uid://ymbmajn3a8ya" path="res://scenes/cami.tscn" id="9_4umqm"]
 [ext_resource type="AudioStream" uid="uid://dum3r7il36506" path="res://assets/audio/oudijzer.ogg" id="10_pp5m5"]
 [ext_resource type="QuadMesh" uid="uid://d0a3wmmibg0ii" path="res://assets/SnowDrawPass.tres" id="13_thu7x"]
 
@@ -107,68 +104,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0skxg")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_el213"]
-render_priority = 0
-shader = ExtResource("9_pp5m5")
-shader_parameter/scale = 0.1
-shader_parameter/albedo_texture = ExtResource("9_4umqm")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iwm6c"]
-resource_name = "Tire.001"
-cull_mode = 2
-albedo_texture = ExtResource("9_4umqm")
-texture_filter = 2
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_fl6f1"]
-_surfaces = [{
-"aabb": AABB(-0.20000005, -0.32360685, -0.38042247, 0.4000001, 0.7236068, 0.7608454),
-"format": 34896613377,
-"index_count": 48,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIABQADAAAABQACAAYAAwAHAAQAAwAFAAgAAwAIAAcACAAFAAYABwAJAAQABwAIAAkAAgAEAAkACAAGAAkAAgAJAAYA"),
-"name": "Tire.001",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 10,
-"vertex_data": PackedByteArray("/v////9/AAAAADae//8AAAAA////fwAA//82nv7/AAAAAAAAGs8AAP7/Np4AAAAAAAA2ngAAAAD//wAAGs8AAP7/AADkMAAAAAAAAOQwAAA=")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_el213"]
-resource_name = "cami_Cylinder"
-_surfaces = [{
-"aabb": AABB(-0.20000005, -0.32360685, -0.38042247, 0.4000001, 0.7236068, 0.7608454),
-"attribute_data": PackedByteArray("vX9o6kEAlpVBAGjqvX+Wlb1/aOpBAJaVQQBo6r1/lpW9/2jqQYCWlUGAaOq9/5aVvf9o6kGAlpVBgGjqvf+Wlb1/aOpBAJaVQQBo6r1/lpUQLY8CEC1wfW0A/z9KdQcaSnX4ZUGIaBrCz9J8QYiXZcLPLAPz+/8/"),
-"format": 34896613399,
-"index_count": 48,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFQAUABcAFQAXABgAGQAaABsAGgAZABwAGgAcAB0A"),
-"material": SubResource("StandardMaterial3D_iwm6c"),
-"name": "Tire.001",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 30,
-"vertex_data": PackedByteArray("/v////9/mVkAADae//+ZWQAA////f5lZ//82nv7/mVn//zae/v8zcwAAAAAazzNzAAA2nv//M3P//wAAGs8zc///AAAaz/8/AAAAAOQw/z8AAAAAGs//P/7/AADkMP8//v8AAOQwzAwAADaeAADMDAAAAADkMMwM/v82ngAAzAz+/zaeAABmJgAA////f2YmAAA2ngAAZib+/////39mJgAAAAAaz/b2AAD///9/9vYAADae///29gAAAADkMPb2AAA2ngAA9vb+/zaeAABd5f//Np7+/13l/v////9/XeX+/wAA5DBd5f//AAAaz13l////f////3////9//v//fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/f/7//3/+//9//v//f////3+yRGSJskRkibJEZImyRGSJskRkiQCzAmYAswJmALMCZgCzAmYAswJm")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_fl6f1")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_thu7x"]
-render_priority = 0
-shader = ExtResource("9_pp5m5")
-shader_parameter/scale = 0.1
-shader_parameter/albedo_texture = ExtResource("9_4umqm")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2af52"]
-render_priority = 0
-shader = ExtResource("9_pp5m5")
-shader_parameter/scale = 0.1
-shader_parameter/albedo_texture = ExtResource("9_4umqm")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ycwl"]
-render_priority = 0
-shader = ExtResource("9_pp5m5")
-shader_parameter/scale = 0.1
-shader_parameter/albedo_texture = ExtResource("9_4umqm")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_el213"]
 emission_shape_offset = Vector3(0, 15, 0)
@@ -327,48 +262,63 @@ skeleton = NodePath("")
 
 [node name="tree_simple" parent="Trees" instance=ExtResource("5_7ycwl")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -36.421, -0.264709, -18.262314)
+surface_material_override/0 = null
 
 [node name="tree_simple2" parent="Trees" instance=ExtResource("5_7ycwl")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -28.659405, -0.894609, -18.262314)
+surface_material_override/0 = null
 
 [node name="tree_simple3" parent="Trees" instance=ExtResource("5_7ycwl")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -20.867926, -1.1303253, -18.262312)
+surface_material_override/0 = null
 
 [node name="tree_simple4" parent="Trees" instance=ExtResource("5_7ycwl")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -16.537062, -2.614531, -18.26231)
+surface_material_override/0 = null
 
 [node name="tree_simple5" parent="Trees" instance=ExtResource("5_7ycwl")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -32.32728, -5.240683, -18.26231)
+surface_material_override/0 = null
 
 [node name="tree_simple6" parent="Trees" instance=ExtResource("5_7ycwl")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -24.843372, -3.0345082, -18.26231)
+surface_material_override/0 = null
 
 [node name="tree_simple7" parent="Trees" instance=ExtResource("5_7ycwl")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -11.707582, -0.5160532, -18.262312)
+surface_material_override/0 = null
 
 [node name="tree_simple8" parent="Trees" instance=ExtResource("5_7ycwl")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -7.0056195, -3.918457, -18.262312)
+surface_material_override/0 = null
 
 [node name="tree_simple9" parent="Trees" instance=ExtResource("5_7ycwl")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -2.7770944, -1.7382708, -18.262312)
+surface_material_override/0 = null
 
 [node name="tree_simple10" parent="Trees" instance=ExtResource("5_7ycwl")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.71539783, -2.678238, -18.262312)
+surface_material_override/0 = null
 
 [node name="tree_simple11" parent="Trees" instance=ExtResource("5_7ycwl")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 5.5909424, -3.990203, -18.262312)
+surface_material_override/0 = null
 
 [node name="tree_simple12" parent="Trees" instance=ExtResource("5_7ycwl")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 10.145622, -2.4092255, -18.262312)
+surface_material_override/0 = null
 
 [node name="tree_simple13" parent="Trees" instance=ExtResource("5_7ycwl")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 14.24937, 0.13743877, -18.262312)
+surface_material_override/0 = null
 
 [node name="tree_simple14" parent="Trees" instance=ExtResource("5_7ycwl")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -3.611, -4.6550827, -2.642)
+surface_material_override/0 = null
 
 [node name="tree_simple15" parent="Trees" instance=ExtResource("5_7ycwl")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -13.163, -4.3460827, -2.642)
+surface_material_override/0 = null
 
 [node name="Wall" type="CSGBox3D" parent="."]
 transform = Transform3D(149.71939, 0, 0, 0, 1.7977414, 0, 0, 0, 1, 0, 6.955824, -41.283447)
@@ -401,30 +351,14 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 34, 
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -25.236752, 1.039, -8.258)
 script = ExtResource("6_7yvfd")
 
-[node name="cami" parent="Van" instance=ExtResource("8_yt8fu")]
-
-[node name="Van" parent="Van/cami" index="0"]
-surface_material_override/0 = ExtResource("8_1abgu")
-
-[node name="BackLeftWheel" parent="Van/cami" index="1"]
-material_override = SubResource("ShaderMaterial_el213")
-mesh = SubResource("ArrayMesh_el213")
-
-[node name="BackRightWheel" parent="Van/cami" index="2"]
-material_override = SubResource("ShaderMaterial_thu7x")
-
-[node name="FrontLeftWheel" parent="Van/cami" index="3"]
-material_override = SubResource("ShaderMaterial_2af52")
-
-[node name="FrontRightWheel" parent="Van/cami" index="4"]
-material_override = SubResource("ShaderMaterial_7ycwl")
-
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Van"]
 stream = ExtResource("10_pp5m5")
 autoplay = true
 max_distance = 50.0
 doppler_tracking = 1
 parameters/looping = true
+
+[node name="cami" parent="Van" instance=ExtResource("9_4umqm")]
 
 [node name="Snow" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0929794, 0)
@@ -438,5 +372,3 @@ draw_pass_1 = ExtResource("13_thu7x")
 [connection signal="pressed" from="ui/Control/Buttons/MarginContainer/HBoxContainer/Options" to="ui/Control" method="_on_options_pressed"]
 [connection signal="pressed" from="ui/Control/Buttons/MarginContainer/HBoxContainer/Exit" to="ui/Control" method="_on_exit_pressed"]
 [connection signal="pressed" from="ui/Control/Settings/MarginContainer/HBoxContainer/VBoxContainer/options" to="ui/Control" method="_on_options_pressed"]
-
-[editable path="Van/cami"]

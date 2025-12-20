@@ -142,7 +142,13 @@ script = ExtResource("18_kyk2p")
 transform = Transform3D(0.5269327, -0.81770504, 0.23173359, 0.746572, 0.5756308, 0.33358547, -0.40616754, -0.002771257, 0.9137945, -57.886, -0.889, 0)
 
 [node name="SpawnLocation2" type="Marker3D" parent="SpawnLocations"]
-transform = Transform3D(0.8023802, -0.5968132, 0, 0.5968132, 0.8023802, 0, 0, 0, 1, -37.357254, -0.9900398, 0)
+transform = Transform3D(0.8023802, -0.5968132, 0, 0.5968132, 0.8023802, 0, 0, 0, 1, 43.322296, -0.9900398, 0)
+
+[node name="SpawnLocation3" type="Marker3D" parent="SpawnLocations"]
+transform = Transform3D(0.5269327, -0.81770504, 0.23173359, 0.746572, 0.5756308, 0.33358547, -0.40616754, -0.002771257, 0.9137945, 0.3958664, -0.889, -104.43997)
+
+[node name="SpawnLocation4" type="Marker3D" parent="SpawnLocations"]
+transform = Transform3D(0.5269327, -0.81770504, 0.23173359, 0.746572, 0.5756308, 0.33358547, -0.40616754, -0.002771257, 0.9137945, -157.33385, -0.889, 84.90105)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_aug50")
@@ -263,7 +269,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="pause" type="Control" parent="UI"]
+[node name="Pause" type="Control" parent="UI"]
 process_mode = 3
 z_index = 1
 layout_mode = 1
@@ -277,14 +283,14 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("10_r7sob")
 
-[node name="FileDialog" type="FileDialog" parent="UI/pause"]
+[node name="FileDialog" type="FileDialog" parent="UI/Pause"]
 title = "Open File(s)"
 file_mode = 1
 access = 2
 filters = PackedStringArray("*.mp3,*.wav,*.ogg;Music Files;audio/mpeg,audio/wav,audio/ogg")
 use_native_dialog = true
 
-[node name="ColorRect" type="ColorRect" parent="UI/pause"]
+[node name="ColorRect" type="ColorRect" parent="UI/Pause"]
 process_mode = 2
 layout_mode = 1
 anchors_preset = 15
@@ -294,7 +300,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.62352943)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/pause/ColorRect"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Pause/ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -309,14 +315,14 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="UI/pause/ColorRect/VBoxContainer"]
+[node name="Label" type="Label" parent="UI/Pause/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "paused"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="resume" type="Button" parent="UI/pause/ColorRect/VBoxContainer"]
+[node name="resume" type="Button" parent="UI/Pause/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.53303653, 0.5330366, 0.53303766, 1)
@@ -325,7 +331,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_r7sob")
 text = "Resume
 "
 
-[node name="music" type="Button" parent="UI/pause/ColorRect/VBoxContainer"]
+[node name="music" type="Button" parent="UI/Pause/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.53303653, 0.5330366, 0.53303766, 1)
@@ -333,7 +339,7 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxFlat_r7sob")
 text = " Upload Music "
 
-[node name="clear" type="Button" parent="UI/pause/ColorRect/VBoxContainer"]
+[node name="clear" type="Button" parent="UI/Pause/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.53303653, 0.5330366, 0.53303766, 1)
@@ -341,7 +347,7 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxFlat_r7sob")
 text = " Clear custom songs "
 
-[node name="Button" type="Button" parent="UI/pause/ColorRect/VBoxContainer"]
+[node name="Button" type="Button" parent="UI/Pause/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.53303653, 0.5330366, 0.53303766, 1)
@@ -349,24 +355,26 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxFlat_r7sob")
 text = "exit"
 
-[node name="spedometer" type="Control" parent="UI"]
+[node name="Spedometer" type="Control" parent="UI"]
 layout_mode = 1
 anchors_preset = 0
-offset_right = 123.0
-offset_bottom = 135.0
+offset_left = 816.0
+offset_top = 560.0
+offset_right = 939.0
+offset_bottom = 695.0
 
-[node name="bg" type="Sprite2D" parent="UI/spedometer"]
+[node name="Bg" type="Sprite2D" parent="UI/Spedometer"]
 position = Vector2(61, 58)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("11_2rd6h")
 
-[node name="needle" type="Sprite2D" parent="UI/spedometer"]
+[node name="Needle" type="Sprite2D" parent="UI/Spedometer"]
 position = Vector2(61, 58)
 rotation = -2.7052603
 scale = Vector2(0.15000002, 0.15000002)
 texture = ExtResource("12_7ua8r")
 
-[node name="Spedometer" type="Label" parent="UI/spedometer"]
+[node name="Spedometer" type="Label" parent="UI/Spedometer"]
 texture_filter = 2
 layout_mode = 0
 offset_left = 2.0
@@ -376,19 +384,19 @@ offset_bottom = 136.0
 text = "0 KM/H"
 horizontal_alignment = 1
 
-[node name="Control" parent="UI" instance=ExtResource("5_s0nni")]
+[node name="Cassette" parent="UI" instance=ExtResource("5_s0nni")]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
-offset_left = -192.0
-offset_top = -160.0
+offset_left = -320.0
+offset_top = -192.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="lineLayer" type="CanvasLayer" parent="UI"]
+[node name="LineLayer" type="CanvasLayer" parent="UI"]
 
-[node name="speedLines" type="ColorRect" parent="UI/lineLayer"]
+[node name="SpeedLines" type="ColorRect" parent="UI/LineLayer"]
 material = SubResource("ShaderMaterial_vjgi4")
 anchors_preset = 15
 anchor_right = 1.0
@@ -396,6 +404,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Control" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Currency" type="Label" parent="UI/Control"]
+layout_mode = 0
+offset_left = 888.0
+offset_top = 40.0
+offset_right = 930.0
+offset_bottom = 63.0
+text = "0 BEF"
+
+[node name="Cargo" type="Label" parent="UI/Control"]
+layout_mode = 0
+offset_left = 888.0
+offset_top = 72.0
+offset_right = 930.0
+offset_bottom = 95.0
+text = "0 KG"
 
 [node name="Assets" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.056533813, 0)
@@ -420,10 +449,10 @@ mesh = SubResource("CapsuleMesh_7ua8r")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dirk"]
 shape = SubResource("CapsuleShape3D_r7sob")
 
-[connection signal="files_selected" from="UI/pause/FileDialog" to="UI/pause" method="_on_file_dialog_files_selected"]
-[connection signal="pressed" from="UI/pause/ColorRect/VBoxContainer/resume" to="UI/pause" method="_on_resume_pressed"]
-[connection signal="pressed" from="UI/pause/ColorRect/VBoxContainer/music" to="UI/pause" method="_on_music_pressed"]
-[connection signal="pressed" from="UI/pause/ColorRect/VBoxContainer/clear" to="UI/pause" method="_on_clear_pressed"]
-[connection signal="pressed" from="UI/pause/ColorRect/VBoxContainer/Button" to="UI/pause" method="_on_button_pressed"]
+[connection signal="files_selected" from="UI/Pause/FileDialog" to="UI/Pause" method="_on_file_dialog_files_selected"]
+[connection signal="pressed" from="UI/Pause/ColorRect/VBoxContainer/resume" to="UI/Pause" method="_on_resume_pressed"]
+[connection signal="pressed" from="UI/Pause/ColorRect/VBoxContainer/music" to="UI/Pause" method="_on_music_pressed"]
+[connection signal="pressed" from="UI/Pause/ColorRect/VBoxContainer/clear" to="UI/Pause" method="_on_clear_pressed"]
+[connection signal="pressed" from="UI/Pause/ColorRect/VBoxContainer/Button" to="UI/Pause" method="_on_button_pressed"]
 
 [editable path="Van/Car/Mesh"]

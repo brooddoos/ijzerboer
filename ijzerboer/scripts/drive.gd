@@ -3,12 +3,12 @@ extends Node3D
 @onready var car = $Car
 @onready var ball = $Ball
 @onready var ground_ray = $Car/RayCast3D
-@onready var needle: Sprite2D = $"../UI/spedometer/needle"
+@onready var needle: Sprite2D = $"../UI/Spedometer/Needle"
 @onready var front_right_wheel = $Car/Mesh/FrontRightWheel
 @onready var front_left_wheel = $Car/Mesh/FrontLeftWheel
 @onready var back_left_wheel: MeshInstance3D = $Car/Mesh/BackLeftWheel
 @onready var back_right_wheel: MeshInstance3D = $Car/Mesh/BackRightWheel
-@onready var speed_lines: ColorRect = $"../UI/lineLayer/speedLines"
+@onready var speed_lines: ColorRect = $"../UI/LineLayer/SpeedLines"
 @onready var van: MeshInstance3D = $Car/Mesh/Van
 
 
@@ -51,7 +51,7 @@ func _physics_process(delta):
 	
 	# Spedometer
 	var speed = int(ball.linear_velocity.length() * 3.6 / 3.0)
-	$"../UI/spedometer/Spedometer".text = str(speed) + " KM/H"
+	$"../UI/Spedometer/Spedometer".text = str(speed) + " KM/H"
 	var needle_orientation = -150+abs(int(speed))
 	needle.rotation = deg_to_rad(clamp(needle_orientation, -155, 150))
 	if needle_orientation > 150.0:

@@ -1,5 +1,5 @@
 extends Control
-@onready var cassette: Control = $"../Control"
+@onready var cassette: Control = $"../Cassette"
 
 var paused := false
 var inTransition := false
@@ -7,7 +7,7 @@ var tween
 
 var ogLen:int
 var customSongs:Dictionary = {}
-
+ 
 func _ready() -> void:
 	$".".position.y = 730.0
 	ogLen = len(cassette.tapes)

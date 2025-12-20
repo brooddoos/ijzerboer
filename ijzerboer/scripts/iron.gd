@@ -6,7 +6,6 @@ func _ready() -> void:
 	var models = $Models.get_children()
 	var model = models.pick_random()
 	model.show()
-	print("iron visible")
 	$Area3D.entered.connect(_on_body_entered)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_body_entered():
