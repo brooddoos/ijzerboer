@@ -10,3 +10,5 @@ The map and concept are set in a rural town somewhere around Antwerp.
 
 ## Credits:
 The game will be fully coded and modelled by **@j4y-boi** and **@kobegeens**.
+
+<a href="https://github.com/brooddoos/ijzerboer">Ijzerboer</a> © 2025 by <a href="https://github.com/brooddoos">De Brooddoos</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>
