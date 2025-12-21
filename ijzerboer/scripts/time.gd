@@ -1,5 +1,5 @@
 extends Node
-var time := 50000.0
+var time := 21600.0
 var last_hour := 0
 func _physics_process(delta: float) -> void:
 	time += delta * 100
