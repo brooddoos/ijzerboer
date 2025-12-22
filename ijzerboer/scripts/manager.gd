@@ -1,7 +1,7 @@
 extends Node
 var fullscreen = false
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("fullscreen"):
 		if fullscreen == false:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)

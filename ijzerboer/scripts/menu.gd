@@ -18,7 +18,7 @@ var rng = RandomNumberGenerator.new()
 func _ready() -> void:
 	_3_dsplashtext.text = splashTexts[rng.randi_range(0,len(splashTexts)-1)]
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("drift"):
 		_3_dsplashtext.text = splashTexts[rng.randi_range(0,len(splashTexts)-1)]
 

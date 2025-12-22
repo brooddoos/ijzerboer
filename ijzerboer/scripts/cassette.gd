@@ -11,11 +11,9 @@ extends Control
 	3: { "title": "Mega Dance Mix", "file":"res://assets/audio/megadance.ogg"},
 }
 @export var current_tape = 1
-
-var tween #zoda je kn wachten indien nodig
+var tween
 
 func load_music(path:String):
-	var steam:AudioStream = null
 	if path.begins_with("res://"):
 		audio.stream = load(path)
 		return

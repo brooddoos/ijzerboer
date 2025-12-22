@@ -335,16 +335,16 @@ text = "Er passen hier achtenveertig karakters per lijn."
 font_size = 100
 outline_size = 0
 
-[node name="startpoint1" type="Node3D" parent="."]
+[node name="StartPoint1" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.305, 1.039, -8.994)
 
-[node name="endpoint1" type="Node3D" parent="."]
+[node name="EndPoint1" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 1.039, -8.994)
 
-[node name="endpoint2" type="Node3D" parent="."]
+[node name="EndPoint2" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -47.305, 1.039, -13)
 
-[node name="startpoint2" type="Node3D" parent="."]
+[node name="StartPoint2" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 34, 1.039, -13)
 
 [node name="Van" type="Node3D" parent="."]
