@@ -2,7 +2,7 @@ extends Node
 var time := 21600.0
 var last_hour := 0
 func _physics_process(delta: float) -> void:
-	time += delta * 100
+	time += delta * 60
 	var seconds = int(time) % 60
 	var minutes = (int(time) / 60) % 60 
 	var hour = (int(time) / 3600) % 24
@@ -11,7 +11,7 @@ func _physics_process(delta: float) -> void:
 		
 	if last_hour != hour:
 		last_hour = hour
-		if hour > 7 and hour < 23:
+		if hour >= 7 and hour <= 22:
 			for i in range(0,rings):
 				$Bell.play()
 				await get_tree().create_timer(1.0).timeout

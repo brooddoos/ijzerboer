@@ -35,6 +35,7 @@ var smoothing:float = 1.0
 func _ready() -> void:
 	steering = default_steering
 	acceleration = default_acceleration
+	$Car/Mesh/LicensePlate.text = Gamestate.car_stats["licenseplate"]
 
 func anti_slip_function(gripf):
 	var velocity = ball.linear_velocity
