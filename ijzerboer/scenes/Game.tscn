@@ -1,26 +1,28 @@
-[gd_scene load_steps=49 format=3 uid="uid://1qbfol6dsaaq"]
+[gd_scene load_steps=50 format=3 uid="uid://1qbfol6dsaaq"]
 
 [ext_resource type="Script" uid="uid://clfas6djira7w" path="res://scripts/drive.gd" id="1_cpr0p"]
 [ext_resource type="Texture2D" uid="uid://by5cxbxpl1gtw" path="res://assets/images/grid.png" id="1_kiw3p"]
 [ext_resource type="Script" uid="uid://ftyg7g7k825l" path="res://scripts/time.gd" id="1_sv1m6"]
-[ext_resource type="PackedScene" uid="uid://e8f5a586tn0u" path="res://assets/cami.glb" id="3_s0nni"]
+[ext_resource type="PackedScene" uid="uid://e8f5a586tn0u" path="res://assets/3d/cami.glb" id="3_s0nni"]
 [ext_resource type="Material" uid="uid://d4akr53ewtdty" path="res://shaders/lightmaterial.tres" id="4_400sg"]
 [ext_resource type="Script" uid="uid://dir1g2xgg4x7m" path="res://scripts/camera.gd" id="4_aug50"]
 [ext_resource type="Material" uid="uid://c5jnsmgq8ymji" path="res://shaders/aesthetic.tres" id="4_g4kob"]
 [ext_resource type="PackedScene" uid="uid://cknkwf45wt35w" path="res://assets/3d/tree_temp.glb" id="4_s0nni"]
 [ext_resource type="Shader" uid="uid://s60rywsqspcx" path="res://shaders/aesthetic.gdshader" id="5_3xj3m"]
 [ext_resource type="PackedScene" uid="uid://bq3i3dy8sx7qc" path="res://scenes/Cassette.tscn" id="5_s0nni"]
-[ext_resource type="Texture2D" uid="uid://bl3v4utw7o846" path="res://assets/cami_wheel.png" id="6_mcffj"]
+[ext_resource type="Texture2D" uid="uid://bl3v4utw7o846" path="res://assets/3d/cami_wheel.png" id="6_mcffj"]
 [ext_resource type="AudioStream" uid="uid://bmqugfyq7tfhe" path="res://assets/audio/honk.ogg" id="8_3xj3m"]
 [ext_resource type="Script" uid="uid://cful1dia0pxja" path="res://scripts/pause.gd" id="10_r7sob"]
 [ext_resource type="Texture2D" uid="uid://bvdtxoxhkl374" path="res://assets/images/spedometer_outline.png" id="11_2rd6h"]
 [ext_resource type="Texture2D" uid="uid://cukwu6sx7ul8w" path="res://assets/images/spedometer_needle.png" id="12_7ua8r"]
 [ext_resource type="Shader" uid="uid://dw2x83lxhae1h" path="res://shaders/speed.gdshader" id="13_7ua8r"]
+[ext_resource type="Script" uid="uid://cw1h2u0fpghhu" path="res://scenes/ui_values.gd" id="16_attvq"]
 [ext_resource type="Script" uid="uid://s7q8cvdiv6w3" path="res://scripts/dirk.gd" id="16_vjgi4"]
 [ext_resource type="AudioStream" uid="uid://djyuueslthfhi" path="res://assets/audio/bell.ogg" id="17_a8wo8"]
 [ext_resource type="Script" uid="uid://clau88y2temwp" path="res://scripts/garage.gd" id="18_45i86"]
 [ext_resource type="Script" uid="uid://duye04gka0uvq" path="res://scripts/ironspawner.gd" id="18_kyk2p"]
 [ext_resource type="Script" uid="uid://6abxpudceh44" path="res://scripts/area_3d.gd" id="19_sv1m6"]
+[ext_resource type="PackedScene" uid="uid://bv57k2wldeeul" path="res://assets/3d/garage.glb" id="23_bneo8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s0nni"]
 sky_top_color = Color(0.45990002, 0.56794, 0.73, 1)
@@ -139,25 +141,22 @@ shader_parameter/animation_speed = 20.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_a8wo8"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_a8wo8"]
-size = Vector3(10, 10, 10)
-
 [node name="Game" type="Node3D"]
 
 [node name="SpawnLocations" type="Node3D" parent="."]
 script = ExtResource("18_kyk2p")
 
 [node name="SpawnLocation1" type="Marker3D" parent="SpawnLocations"]
-transform = Transform3D(0.5269327, -0.81770504, 0.23173359, 0.746572, 0.5756308, 0.33358547, -0.40616754, -0.002771257, 0.9137945, -57.886, -0.889, 0)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, -57.886, -0.889, 0)
 
 [node name="SpawnLocation2" type="Marker3D" parent="SpawnLocations"]
-transform = Transform3D(0.8023802, -0.5968132, 0, 0.5968132, 0.8023802, 0, 0, 0, 1, 43.322296, -0.9900398, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.322296, -0.9900398, 0)
 
 [node name="SpawnLocation3" type="Marker3D" parent="SpawnLocations"]
-transform = Transform3D(0.5269327, -0.81770504, 0.23173359, 0.746572, 0.5756308, 0.33358547, -0.40616754, -0.002771257, 0.9137945, 0.3958664, -0.889, -104.43997)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0.3958664, -0.889, -104.43997)
 
 [node name="SpawnLocation4" type="Marker3D" parent="SpawnLocations"]
-transform = Transform3D(0.5269327, -0.81770504, 0.23173359, 0.746572, 0.5756308, 0.33358547, -0.40616754, -0.002771257, 0.9137945, -157.33385, -0.889, 84.90105)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, -157.33385, -0.889, 84.90105)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_aug50")
@@ -421,12 +420,13 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Control" type="Control" parent="UI"]
+[node name="Values" type="Control" parent="UI"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("16_attvq")
 
-[node name="Currency" type="Label" parent="UI/Control"]
+[node name="Currency" type="Label" parent="UI/Values"]
 layout_mode = 0
 offset_left = 888.0
 offset_top = 40.0
@@ -434,7 +434,7 @@ offset_right = 930.0
 offset_bottom = 63.0
 text = "0 BEF"
 
-[node name="Cargo" type="Label" parent="UI/Control"]
+[node name="Cargo" type="Label" parent="UI/Values"]
 layout_mode = 0
 offset_left = 888.0
 offset_top = 72.0
@@ -564,12 +564,11 @@ collision_mask = 2
 script = ExtResource("19_sv1m6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Garage/Area3D"]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+transform = Transform3D(45, 0, 0, 0, 45, 0, 0, 0, 45, 1, 0, -3)
 shape = SubResource("CylinderShape3D_a8wo8")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Garage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 11)
-mesh = SubResource("BoxMesh_a8wo8")
+[node name="garage" parent="Garage" instance=ExtResource("23_bneo8")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.9556332, 0.020529628, 18.349487)
 
 [connection signal="files_selected" from="UI/Pause/FileDialog" to="UI/Pause" method="_on_file_dialog_files_selected"]
 [connection signal="pressed" from="UI/Pause/ColorRect/VBoxContainer/resume" to="UI/Pause" method="_on_resume_pressed"]

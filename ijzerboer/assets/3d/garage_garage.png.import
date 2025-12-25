@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl3v4utw7o846"
-path.s3tc="res://.godot/imported/cami_wheel.png-4cd907a6f714c77c39dc86f38cef7c2d.s3tc.ctex"
+uid="uid://doxm64l4130ai"
+path.s3tc="res://.godot/imported/garage_garage.png-e1bbd2637850923a1d3569073bbd8ff9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "9c34bc7e7aaeb0197509c70424830733"
+"md5": "f2ce1994cadb0f15060fb88768810569"
 }
 
 [deps]
 
-source_file="res://assets/cami_wheel.png"
-dest_files=["res://.godot/imported/cami_wheel.png-4cd907a6f714c77c39dc86f38cef7c2d.s3tc.ctex"]
+source_file="res://assets/3d/garage_garage.png"
+dest_files=["res://.godot/imported/garage_garage.png-e1bbd2637850923a1d3569073bbd8ff9.s3tc.ctex"]
 
 [params]
 

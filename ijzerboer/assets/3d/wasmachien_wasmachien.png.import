@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgandea2lyobj"
-path.s3tc="res://.godot/imported/cami_cami.png-5db27d53952dd9cd1296ae7c175a8079.s3tc.ctex"
+uid="uid://c7nlywijijh6v"
+path.s3tc="res://.godot/imported/wasmachien_wasmachien.png-108105f3a4a3b72fd3d66ed42312a2d0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "4dd40ecb9836fe1b090a81debde64c24"
+"md5": "ac50305341cc3bbea4e548845cd878cd"
 }
 
 [deps]
 
-source_file="res://assets/cami_cami.png"
-dest_files=["res://.godot/imported/cami_cami.png-5db27d53952dd9cd1296ae7c175a8079.s3tc.ctex"]
+source_file="res://assets/3d/wasmachien_wasmachien.png"
+dest_files=["res://.godot/imported/wasmachien_wasmachien.png-108105f3a4a3b72fd3d66ed42312a2d0.s3tc.ctex"]
 
 [params]
 
