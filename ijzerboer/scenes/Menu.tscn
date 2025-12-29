@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c4ec6r74ng1hj" path="res://scenes/tree_simple.tscn" id="5_7ycwl"]
 [ext_resource type="Script" uid="uid://cpny8b1ylg8y5" path="res://scripts/menucar.gd" id="6_7yvfd"]
 [ext_resource type="Texture2D" uid="uid://dcfej0covuq8y" path="res://assets/images/logo.png" id="6_thu7x"]
-[ext_resource type="PackedScene" uid="uid://ymbmajn3a8ya" path="res://scenes/cami.tscn" id="9_4umqm"]
+[ext_resource type="PackedScene" uid="uid://e8f5a586tn0u" path="res://assets/3d/cami.glb" id="9_4umqm"]
 [ext_resource type="AudioStream" uid="uid://dum3r7il36506" path="res://assets/audio/oudijzer.ogg" id="10_pp5m5"]
 [ext_resource type="QuadMesh" uid="uid://d0a3wmmibg0ii" path="res://assets/SnowDrawPass.tres" id="13_thu7x"]
 

@@ -1,0 +1,128 @@
+[gd_scene load_steps=16 format=3 uid="uid://c0s3v0fi7ln4u"]
+
+[ext_resource type="Script" uid="uid://clfas6djira7w" path="res://scripts/drive.gd" id="1_v7lie"]
+[ext_resource type="PackedScene" uid="uid://e8f5a586tn0u" path="res://assets/3d/cami.glb" id="2_bfku0"]
+[ext_resource type="Material" uid="uid://c5jnsmgq8ymji" path="res://shaders/aesthetic.tres" id="3_i5sjj"]
+[ext_resource type="Shader" uid="uid://s60rywsqspcx" path="res://shaders/aesthetic.gdshader" id="4_ckadj"]
+[ext_resource type="Texture2D" uid="uid://bl3v4utw7o846" path="res://assets/3d/cami_wheel.png" id="5_658ie"]
+[ext_resource type="Material" uid="uid://d4akr53ewtdty" path="res://shaders/lightmaterial.tres" id="6_i1fuk"]
+[ext_resource type="AudioStream" uid="uid://bmqugfyq7tfhe" path="res://assets/audio/honk.ogg" id="7_q1vlk"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ra71u"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dfshe"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ctlpt"]
+render_priority = 0
+shader = ExtResource("4_ckadj")
+shader_parameter/scale = 0.1
+shader_parameter/albedo_texture = ExtResource("5_658ie")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7e1fp"]
+render_priority = 0
+shader = ExtResource("4_ckadj")
+shader_parameter/scale = 0.1
+shader_parameter/albedo_texture = ExtResource("5_658ie")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8osq2"]
+render_priority = 0
+shader = ExtResource("4_ckadj")
+shader_parameter/scale = 0.1
+shader_parameter/albedo_texture = ExtResource("5_658ie")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_khjts"]
+render_priority = 0
+shader = ExtResource("4_ckadj")
+shader_parameter/scale = 0.1
+shader_parameter/albedo_texture = ExtResource("5_658ie")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2rd6h"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ofkat"]
+material = SubResource("StandardMaterial3D_2rd6h")
+size = Vector2(0.5, 1)
+
+[node name="Car" type="Node3D"]
+script = ExtResource("1_v7lie")
+
+[node name="Ball" type="RigidBody3D" parent="."]
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_ra71u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("SphereShape3D_dfshe")
+
+[node name="Car" type="Node3D" parent="."]
+
+[node name="Mesh" parent="Car" instance=ExtResource("2_bfku0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.57, 0)
+
+[node name="Van" parent="Car/Mesh" index="0"]
+surface_material_override/0 = ExtResource("3_i5sjj")
+
+[node name="BackLeftWheel" parent="Car/Mesh" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_ctlpt")
+
+[node name="BackRightWheel" parent="Car/Mesh" index="2"]
+surface_material_override/0 = SubResource("ShaderMaterial_7e1fp")
+
+[node name="FrontLeftWheel" parent="Car/Mesh" index="3"]
+surface_material_override/0 = SubResource("ShaderMaterial_8osq2")
+
+[node name="FrontRightWheel" parent="Car/Mesh" index="4"]
+surface_material_override/0 = SubResource("ShaderMaterial_khjts")
+
+[node name="FrontRightLight" parent="Car/Mesh" index="5"]
+surface_material_override/0 = ExtResource("6_i1fuk")
+
+[node name="FrontLeftLight" parent="Car/Mesh" index="6"]
+surface_material_override/0 = ExtResource("6_i1fuk")
+
+[node name="drift2" type="CPUParticles3D" parent="Car/Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, -0.40000004, -1.7200001)
+emitting = false
+amount = 150
+lifetime = 1.5
+fixed_fps = 60
+mesh = SubResource("PlaneMesh_ofkat")
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+
+[node name="drift" type="CPUParticles3D" parent="Car/Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.40000004, -1.7200001)
+emitting = false
+amount = 150
+lifetime = 1.5
+fixed_fps = 60
+mesh = SubResource("PlaneMesh_ofkat")
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+
+[node name="LicensePlate" type="Label3D" parent="Car/Mesh"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.5050738, 0.16246593, -2.6132786)
+modulate = Color(0.9323887, 0.35383728, 0.38981858, 1)
+text = "test"
+outline_size = 0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.082690716, -0.2672081, 0.6393982)
+stream = ExtResource("7_q1vlk")
+volume_db = 10.0
+max_db = 6.0
+max_distance = 100.0
+bus = &"Car"
+
+[node name="CameraPoint" type="Node3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -11)
+metadata/DO_NOT_REMOVE_ME = ""
+
+[node name="RayCast3D" type="RayCast3D" parent="Car"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1, 0)
+hit_from_inside = true
+
+[editable path="Car/Mesh"]
